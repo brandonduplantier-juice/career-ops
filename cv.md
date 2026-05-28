@@ -57,6 +57,18 @@ monthly trend line, and interactive slicers filtering by insurance type, departm
 and gender.
 github.com/brandonduplantier-juice/python-portfolio/tree/main/Hospital-Readmission-PowerBI
 
+### HR Attrition Risk Analysis
+**Independent HR Analytics Project | Python, Power BI, DAX | May 2026**
+
+Built an end-to-end Python to Power BI pipeline analyzing employee attrition
+risk across 400 employees and 6 departments. Python engineered a weighted
+attrition risk score per employee combining overtime, job satisfaction,
+work-life balance, salary, tenure, commute distance, and manager rating into
+a 0-100 score. Power BI dashboard identified Sales and Marketing attrition
+at 28% — 8 points above the 15% target. Used CALCULATE and RANKX DAX
+measures. Features gauge, treemap, scatter plot, and interactive slicers.
+github.com/brandonduplantier-juice/python-portfolio/tree/main/HR-Attrition-PowerBI
+
 ### Medication Adherence and Organ Rejection Risk Scoring System
 **Independent Biomedical Project | Python | 2024 - Present**
 
