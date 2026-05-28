@@ -44,6 +44,20 @@ production-quality output. Available immediately.
 
 ## Projects and Experience
 
+### SQL Analytics Portfolio
+**Academic + Independent | PostgreSQL | July 2025**
+
+Multi-domain SQL analysis across 4 real databases demonstrating intermediate
+to advanced query patterns. Identified that 210 whales (9% of paying users)
+generate 52% of mobile game revenue using CTEs and CASE segmentation. Built
+window functions calculating regional percentage contributions to environmental
+impact metrics. Correlated roofing job volume with weekly weather events using
+DATE_TRUNC joins. Measured Instacart issue rates by region using conditional
+aggregation (SUM CASE WHEN).
+Techniques: CTEs, window functions, conditional aggregation, subqueries,
+date arithmetic, multi-table JOINs.
+github.com/brandonduplantier-juice/python-portfolio/tree/main/SQL-Analytics-Portfolio
+
 ### Hospital 30-Day Readmission Analysis
 **Independent Healthcare Analytics Project | Power BI, DAX | May 2026**
 
