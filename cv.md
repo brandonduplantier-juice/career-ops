@@ -44,6 +44,18 @@ production-quality output. Available immediately.
 
 ## Projects and Experience
 
+### Hospital Readmission Spreadsheet Analysis
+**Independent Healthcare Analytics Project | Google Sheets | May 2026**
+
+Built a multi-sheet Google Sheets workbook analyzing 300-patient hospital
+readmission dataset. Created 3 pivot tables summarizing readmission patterns
+by diagnosis, insurance type, and discharge disposition. Wrote 11 formulas
+including COUNTIFS for conditional rates, INDEX/MATCH for dynamic lookups,
+and cross-sheet references pulling live KPIs into a dashboard tab.
+Key finding: patients without a scheduled followup readmit at 30.59% vs
+24.08% overall — a 6.5 point gap with direct clinical intervention implications.
+Link: docs.google.com/spreadsheets/d/15A3XCNeAAntAN3o3DH4Z97v85CsdN2afLzj7Zy2zYhY
+
 ### Global Happiness Dashboard
 **Independent Analytics Project | Tableau, Python | May 2026**
 
