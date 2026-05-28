@@ -44,6 +44,17 @@ production-quality output. Available immediately.
 
 ## Projects and Experience
 
+### Global Happiness Dashboard
+**Independent Analytics Project | Tableau, Python | May 2026**
+
+Built an interactive Tableau Public dashboard analyzing the 2019 World Happiness
+Report across 156 countries. Used Python to merge and standardize 2015 and 2019
+datasets before loading into Tableau. Dashboard features a choropleth world map
+colored by happiness score, scatter plot with regression trend line showing GDP
+vs happiness correlation, top 20 countries bar chart, and happiness factor
+comparison (Freedom 0.87 avg, Health 0.66, GDP 0.40).
+Live dashboard: public.tableau.com/views/global_happiness_dashboard/GlobalHappinessDashboard2019
+
 ### SQL Analytics Portfolio
 **Academic + Independent | PostgreSQL | July 2025**
 
