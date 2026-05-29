@@ -50,6 +50,13 @@ ONSITE_CITIES = [
     "dallas, tx", "houston, tx", "minneapolis", "fremont, ca",
     "durham, nc", "cary, nc", "nashua, nh", "albuquerque, nm",
     "salina, ks", "peoria, az", "cincinnati", "new york, united states",
+    "toronto, oh", "grand rapids, mi", "salt lake city, ut", "tucson, az",
+    "troy, mi", "livonia, mi", "marietta, oh", "maryland heights, mo",
+    "american fork, ut", "honolulu, hi", "louisville, ky",
+    "alberta, united", "florida, united", "colorado, united",
+    "california, united", "alabama, united", "ohio, united",
+    "michigan, united", "georgia, united", "texas, united",
+    "new jersey, united", "virginia, united", "tennessee, united",
 ]
 
 HEADERS_LIST = [
