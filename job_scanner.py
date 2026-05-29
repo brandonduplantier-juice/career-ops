@@ -1,19 +1,27 @@
 """
 Free Job Scanner - No AI tokens required
-Hits public Greenhouse, Lever, and Ashby APIs + scrapes remotive/jobicy
-Saves all matches to career-ops/data/raw_scan.md for manual AI review
+- Hits public Greenhouse, Lever, Ashby APIs + Remotive + Jobicy
+- Validates every URL (HEAD request, checks 200/301/302)
+- Deduplicates against seen_jobs.json (only shows NEW jobs each day)
+- Saves raw_scan.md for manual AI review
 """
 
 import requests
 import json
 import datetime
 import time
+import hashlib
 import re
 from pathlib import Path
+from xml.etree import ElementTree as ET
 
-OUTPUT_FILE = r"C:\Users\brand\career-ops\data\raw_scan.md"
+# ── PATHS ─────────────────────────────────────────────────────────────────────
+BASE_DIR = Path(r"C:\Users\brand\career-ops")
+OUTPUT_FILE = BASE_DIR / "data" / "raw_scan.md"
+SEEN_FILE = BASE_DIR / "data" / "seen_jobs.json"
+LOG_FILE = BASE_DIR / "data" / "scan_log.txt"
 
-# ── KEYWORDS TO MATCH (job title or description) ─────────────────────────────
+# ── KEYWORDS ──────────────────────────────────────────────────────────────────
 TITLE_KEYWORDS = [
     "data analyst", "bi analyst", "business intelligence analyst",
     "healthcare analyst", "clinical data analyst", "health informatics",
@@ -26,119 +34,169 @@ TITLE_KEYWORDS = [
     "biology expert", "llm evaluator", "data annotation", "biology ai",
     "python analyst", "sql analyst", "tableau analyst", "power bi analyst",
     "looker analyst", "biostatistician", "epidemiologist",
+    "informatics analyst", "pharmacy analyst", "claims analyst",
+    "quality analyst", "outcomes analyst", "health economist",
 ]
 
-EXCLUDE_KEYWORDS = [
+EXCLUDE_TITLE = [
     "senior", "staff", "principal", "director", "vp ", "vice president",
-    "manager", "head of", "lead ", "architect", "wet lab", "bench",
-    "on-site only", "on site only",
+    "manager", "head of", "lead ", "architect", "wet lab", "bench scientist",
+    "laboratory", "chemist", "physician", "nurse", "surgeon",
 ]
 
 REMOTE_KEYWORDS = [
-    "remote", "work from home", "wfh", "distributed", "anywhere",
-    "virtual", "telecommute",
+    "remote", "work from home", "wfh", "distributed", "anywhere us",
+    "virtual", "telecommute", "anywhere", "united states",
 ]
 
-# ── GREENHOUSE COMPANIES ──────────────────────────────────────────────────────
+# ── COMPANY LISTS ─────────────────────────────────────────────────────────────
 GREENHOUSE_COMPANIES = [
     # Healthcare / Health Tech
-    "natera", "truveta", "veranahealth", "freenome", "flatironhealth",
-    "komodohealth", "strive", "headway", "modernhealth", "doximity",
-    "midihealth", "cloverhealth", "omadahealth", "smarterdx", "oscarhealth",
+    "natera", "truveta", "freenome", "flatironhealth", "komodohealth",
+    "strivehealthmanagement", "headway", "modernhealth", "doximity",
+    "cloverhealth", "omadahealth", "smarterdx", "oscarhealth",
     "springhealth66", "rxsense", "veracyte", "includedhealth", "cityblock",
-    "vizai", "pathai", "verily", "relationrx", "talkiatry", "sondermind",
-    "commure", "akasa", "ambiencehealthcare", "abridge", "solace",
-    "qualifiedhealth", "interrahealth", "wellth", "mcghealth", "sifthealthcare",
-    "hsag", "welbehealth", "dreemhealth", "dreem",
+    "vizai", "pathai", "verily", "talkiatry", "sondermind", "commure",
+    "akasa", "ambiencehealthcare", "abridge", "welbehealth", "dreemhealth",
+    "mcghealth", "sifthealthcare", "transcarent", "ansiblehealth",
+    "quantilehealth", "healthverity", "midihealth", "virta",
+    "machinifyinc", "medanalyticsllc", "molina", "centene",
+    "premierinc", "cotiviti", "privia", "evolent", "nomi-health",
     # Biotech / Genomics
     "insitro", "recursion", "benchling", "guardanthealth", "tempus",
-    "sagebionetworks", "primemedicine", "pacbio", "roivant", "paradigm",
-    "exscientia", "insilico", "owkin", "virtahealth", "paige",
-    "schrodinger", "deepgenomics", "arcus", "novavax", "zymo",
-    "envedabio", "assemblybio", "arvainas", "vaxcyte",
-    # AI / Data
+    "sagebionetworks", "primemedicine", "pacbio", "roivant",
+    "exscientia", "owkin", "paige", "schrodinger", "deepgenomics",
+    "arcus", "novavax", "assemblybio", "envedabio", "vaxcyte",
+    "10xgenomics", "illumina", "pacificbiosciences", "nanostorage",
+    "adaptivebiotech", "grail", "foundationmedicine",
+    # AI / Data / Tech
     "scale", "labelbox", "snorkelai", "anthropic", "openai", "cohere",
-    "databricks", "hex", "retool", "statsig", "apollo", "clay",
-    "windfall", "pitchbook", "datavant", "segment",
-    # Tech
-    "airbnb", "zapier", "gitlab", "cloudflare", "stripe", "ramp", "brex",
-    "dbtlabs", "deel", "remote", "tailscale", "mercury", "workos",
-    "attio", "pave", "goody", "acorns", "openx", "perplexity",
-    "cursor", "harvey", "linear", "beehiiv", "levels",
-    # Staffing / Analytics
-    "harnham", "insightglobal", "roberthalf",
+    "databricks", "hex-inc", "retool", "statsig", "apollo",
+    "windfall", "pitchbookdata", "datavant", "segment", "goody",
+    "acorns", "openx", "perplexityai", "tailscale", "gitlab",
+    "cloudflare", "stripe", "ramp", "brex", "deel", "remote",
+    "harnham", "insightglobal",
+    # Staffing / Consulting
+    "publicconsultinggroup", "precisionscientia", "precisionmedicinegroup",
 ]
 
-# ── LEVER COMPANIES ───────────────────────────────────────────────────────────
 LEVER_COMPANIES = [
     # Healthcare
-    "hsag", "strive", "headway", "modernhealth", "cityblock",
-    "virta", "qualified-health-pbc", "interra", "wellth",
+    "hsag", "headway", "modernhealth", "cityblock", "virta",
     "bighealth", "collaborative-drug-discovery", "teselagen",
-    "midi-health", "clover-health", "omada", "included-health",
+    "clover-health", "omada", "included-health", "strive-health",
+    "qualified-health-pbc", "interra-health", "wellth", "solace",
+    "catch-health", "alignment-healthcare", "privia-health",
+    "evolent-health", "meridian-health-plan", "devoted-health",
+    "bright-health", "oscar-health", "bright-health-group",
     # Biotech
-    "insitro", "arc-institute", "formation-bio", "generate",
+    "insitro", "arc-institute", "formation-bio", "generate-biomedicines",
     "newlimit", "retro-biosciences", "gretel", "cradle",
+    "prime-medicine", "orbital-therapeutics", "recursion-pharmaceuticals",
     # AI / Data
-    "scale-ai", "outlier-ai", "invisible-technologies", "surge-ai",
-    "turing", "snorkel-ai", "cohere", "deepmind",
+    "scale-ai", "outlier-ai", "invisible-technologies",
+    "turing", "snorkel-ai", "surge-hq",
     # Tech
     "hex", "retool", "statsig", "mercury", "attio", "pave",
-    "linear", "beehiiv", "ramp",
+    "linear", "beehiiv", "ramp", "dbt-labs", "leavitt-group",
+    "windfall-data", "harnham",
 ]
 
-# ── ASHBY COMPANIES ───────────────────────────────────────────────────────────
 ASHBY_COMPANIES = [
     "leavitt", "qualified-health-pbc", "quantilehealth",
     "relationrx", "commure", "akasa", "solace", "wellth",
     "formation-bio", "arc-institute", "newlimit", "cradle",
     "hex", "retool", "cursor", "harvey", "perplexity",
     "goody", "acorns", "levels", "clay", "attio", "pave",
-    "statsig", "mercury", "workos", "beehiiv",
+    "statsig", "mercury", "workos", "beehiiv", "apollographql",
+    "catch-health", "strive", "interra-health", "aligned-ops",
 ]
 
-# ── REMOTIVE RSS ──────────────────────────────────────────────────────────────
-REMOTIVE_CATEGORIES = [
-    "https://remotive.com/api/remote-jobs?category=data&limit=100",
+REMOTIVE_URLS = [
+    "https://remotive.com/api/remote-jobs?category=data&limit=150",
     "https://remotive.com/api/remote-jobs?category=software-dev&limit=50",
-    "https://remotive.com/api/remote-jobs?category=all-others&limit=50",
+    "https://remotive.com/api/remote-jobs?search=healthcare+analyst&limit=50",
+    "https://remotive.com/api/remote-jobs?search=clinical+data&limit=50",
+    "https://remotive.com/api/remote-jobs?search=bioinformatics&limit=50",
 ]
 
-# ── JOBICY RSS ────────────────────────────────────────────────────────────────
-JOBICY_URL = "https://jobicy.com/?feed=job_feed&job_categories=analyst,data,science&job_types=full-time,part-time&search_keywords=data+analyst"
+JOBICY_FEEDS = [
+    "https://jobicy.com/?feed=job_feed&job_categories=analyst&job_types=full-time,part-time",
+    "https://jobicy.com/?feed=job_feed&search_keywords=healthcare+data+analyst",
+    "https://jobicy.com/?feed=job_feed&search_keywords=clinical+data+analyst",
+    "https://jobicy.com/?feed=job_feed&search_keywords=bioinformatics",
+]
+
+
+def log(msg):
+    ts = datetime.datetime.now().strftime("%H:%M:%S")
+    print(f"[{ts}] {msg}")
+
+
+def job_id(job):
+    """Stable hash of company+title+url for dedup."""
+    key = f"{job['company'].lower()}|{job['title'].lower()}|{job['url']}"
+    return hashlib.md5(key.encode()).hexdigest()
+
+
+def load_seen():
+    if SEEN_FILE.exists():
+        try:
+            return json.loads(SEEN_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            return {}
+    return {}
+
+
+def save_seen(seen):
+    SEEN_FILE.parent.mkdir(parents=True, exist_ok=True)
+    SEEN_FILE.write_text(json.dumps(seen, indent=2), encoding="utf-8")
 
 
 def is_title_match(title):
-    title_lower = title.lower()
-    if any(kw in title_lower for kw in EXCLUDE_KEYWORDS):
+    t = title.lower()
+    if any(kw in t for kw in EXCLUDE_TITLE):
         return False
-    return any(kw in title_lower for kw in TITLE_KEYWORDS)
+    return any(kw in t for kw in TITLE_KEYWORDS)
 
 
-def is_remote(text):
-    text_lower = text.lower()
-    return any(kw in text_lower for kw in REMOTE_KEYWORDS)
+def is_remote_text(text):
+    t = text.lower()
+    return any(kw in t for kw in REMOTE_KEYWORDS)
+
+
+def validate_url(url, timeout=6):
+    """Returns True if URL responds with 200/301/302/403."""
+    if not url or not url.startswith("http"):
+        return False
+    try:
+        r = requests.head(url, timeout=timeout, allow_redirects=True,
+                          headers={"User-Agent": "Mozilla/5.0"})
+        return r.status_code in (200, 301, 302, 403)
+    except Exception:
+        try:
+            r = requests.get(url, timeout=timeout, allow_redirects=True,
+                             headers={"User-Agent": "Mozilla/5.0"}, stream=True)
+            return r.status_code in (200, 301, 302, 403)
+        except Exception:
+            return False
 
 
 def scan_greenhouse(company):
     jobs = []
     try:
-        url = f"https://boards-api.greenhouse.io/v1/boards/{company}/jobs"
-        r = requests.get(url, timeout=8)
+        r = requests.get(
+            f"https://boards-api.greenhouse.io/v1/boards/{company}/jobs",
+            timeout=8)
         if r.status_code == 200:
-            data = r.json()
-            for job in data.get("jobs", []):
+            for job in r.json().get("jobs", []):
                 title = job.get("title", "")
                 location = job.get("location", {}).get("name", "")
-                job_url = job.get("absolute_url", "")
-                if is_title_match(title) and is_remote(location + " " + title):
-                    jobs.append({
-                        "company": company.title(),
-                        "title": title,
-                        "location": location,
-                        "url": job_url,
-                        "source": "Greenhouse",
-                    })
+                url = job.get("absolute_url", "")
+                if is_title_match(title) and is_remote_text(location + " " + title):
+                    jobs.append({"company": company.replace("-", " ").title(),
+                                 "title": title, "location": location,
+                                 "url": url, "source": "Greenhouse"})
     except Exception:
         pass
     return jobs
@@ -147,24 +205,21 @@ def scan_greenhouse(company):
 def scan_lever(company):
     jobs = []
     try:
-        url = f"https://api.lever.co/v0/postings/{company}?mode=json"
-        r = requests.get(url, timeout=8)
+        r = requests.get(
+            f"https://api.lever.co/v0/postings/{company}?mode=json",
+            timeout=8)
         if r.status_code == 200:
-            data = r.json()
-            for job in data:
+            for job in r.json():
                 title = job.get("text", "")
-                categories = job.get("categories", {})
-                location = categories.get("location", "")
-                commitment = categories.get("commitment", "")
-                job_url = job.get("hostedUrl", "")
-                if is_title_match(title) and is_remote(location + " " + commitment + " " + title):
-                    jobs.append({
-                        "company": company.replace("-", " ").title(),
-                        "title": title,
-                        "location": location,
-                        "url": job_url,
-                        "source": "Lever",
-                    })
+                cats = job.get("categories", {})
+                location = cats.get("location", "")
+                commitment = cats.get("commitment", "")
+                url = job.get("hostedUrl", "")
+                if is_title_match(title) and is_remote_text(
+                        location + " " + commitment + " " + title):
+                    jobs.append({"company": company.replace("-", " ").title(),
+                                 "title": title, "location": location,
+                                 "url": url, "source": "Lever"})
     except Exception:
         pass
     return jobs
@@ -173,23 +228,19 @@ def scan_lever(company):
 def scan_ashby(company):
     jobs = []
     try:
-        url = f"https://api.ashbyhq.com/posting-api/job-board/{company}"
-        r = requests.get(url, timeout=8)
+        r = requests.get(
+            f"https://api.ashbyhq.com/posting-api/job-board/{company}",
+            timeout=8)
         if r.status_code == 200:
-            data = r.json()
-            for job in data.get("jobPostings", []):
+            for job in r.json().get("jobPostings", []):
                 title = job.get("title", "")
                 location = job.get("locationName", "")
-                is_remote_flag = job.get("isRemote", False)
-                job_url = f"https://jobs.ashbyhq.com/{company}/{job.get('id', '')}"
-                if is_title_match(title) and (is_remote_flag or is_remote(location)):
-                    jobs.append({
-                        "company": company.replace("-", " ").title(),
-                        "title": title,
-                        "location": location,
-                        "url": job_url,
-                        "source": "Ashby",
-                    })
+                is_rem = job.get("isRemote", False)
+                url = f"https://jobs.ashbyhq.com/{company}/{job.get('id','')}"
+                if is_title_match(title) and (is_rem or is_remote_text(location)):
+                    jobs.append({"company": company.replace("-", " ").title(),
+                                 "title": title, "location": location,
+                                 "url": url, "source": "Ashby"})
     except Exception:
         pass
     return jobs
@@ -197,23 +248,22 @@ def scan_ashby(company):
 
 def scan_remotive():
     jobs = []
-    for url in REMOTIVE_CATEGORIES:
+    seen_urls = set()
+    for url in REMOTIVE_URLS:
         try:
-            r = requests.get(url, timeout=10)
+            r = requests.get(url, timeout=12)
             if r.status_code == 200:
-                data = r.json()
-                for job in data.get("jobs", []):
+                for job in r.json().get("jobs", []):
                     title = job.get("title", "")
-                    company = job.get("company_name", "")
-                    job_url = job.get("url", "")
+                    jurl = job.get("url", "")
+                    if jurl in seen_urls:
+                        continue
+                    seen_urls.add(jurl)
                     if is_title_match(title):
                         jobs.append({
-                            "company": company,
-                            "title": title,
-                            "location": "Remote",
-                            "url": job_url,
-                            "source": "Remotive",
-                        })
+                            "company": job.get("company_name", "Unknown"),
+                            "title": title, "location": "Remote",
+                            "url": jurl, "source": "Remotive"})
         except Exception:
             pass
         time.sleep(1)
@@ -222,153 +272,192 @@ def scan_remotive():
 
 def scan_jobicy():
     jobs = []
-    try:
-        r = requests.get(JOBICY_URL, timeout=10)
-        if r.status_code == 200:
-            import xml.etree.ElementTree as ET
-            root = ET.fromstring(r.content)
-            ns = {"job": "https://jobicy.com/"}
-            for item in root.findall(".//item"):
-                title_el = item.find("title")
-                link_el = item.find("link")
-                if title_el is not None and link_el is not None:
-                    title = title_el.text or ""
-                    link = link_el.text or ""
-                    if is_title_match(title):
-                        company_el = item.find("job:company", ns)
-                        company = company_el.text if company_el is not None else "Unknown"
-                        jobs.append({
-                            "company": company,
-                            "title": title,
-                            "location": "Remote",
-                            "url": link,
-                            "source": "Jobicy",
-                        })
-    except Exception:
-        pass
+    for feed_url in JOBICY_FEEDS:
+        try:
+            r = requests.get(feed_url, timeout=12)
+            if r.status_code == 200:
+                root = ET.fromstring(r.content)
+                ns = {"job": "https://jobicy.com/"}
+                for item in root.findall(".//item"):
+                    title_el = item.find("title")
+                    link_el = item.find("link")
+                    if title_el is not None and link_el is not None:
+                        title = title_el.text or ""
+                        link = link_el.text or ""
+                        if is_title_match(title):
+                            co_el = item.find("job:company", ns)
+                            company = co_el.text if co_el is not None else "Unknown"
+                            jobs.append({"company": company, "title": title,
+                                         "location": "Remote", "url": link,
+                                         "source": "Jobicy"})
+        except Exception:
+            pass
+        time.sleep(1)
     return jobs
 
 
-def write_output(all_jobs):
-    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-    
-    # Deduplicate by URL
-    seen = set()
-    unique = []
-    for job in all_jobs:
-        if job["url"] not in seen:
-            seen.add(job["url"])
-            unique.append(job)
+def validate_batch(jobs):
+    """Check all URLs — returns (valid_jobs, broken_count)."""
+    log(f"Validating {len(jobs)} URLs...")
+    valid = []
+    broken = 0
+    for i, job in enumerate(jobs):
+        ok = validate_url(job["url"])
+        if ok:
+            valid.append(job)
+        else:
+            broken += 1
+        if (i + 1) % 20 == 0:
+            log(f"  Validated {i+1}/{len(jobs)}...")
+        time.sleep(0.3)
+    log(f"  Valid: {len(valid)} | Broken/expired: {broken}")
+    return valid, broken
 
-    # Group by source
+
+def filter_new(jobs, seen):
+    """Return only jobs not seen before, update seen dict."""
+    today = datetime.date.today().isoformat()
+    new_jobs = []
+    for job in jobs:
+        jid = job_id(job)
+        if jid not in seen:
+            seen[jid] = {"first_seen": today, "title": job["title"],
+                         "company": job["company"]}
+            new_jobs.append(job)
+    return new_jobs
+
+
+def write_output(new_jobs, all_valid, broken_count, seen):
+    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    total_seen = len(seen)
+
     by_source = {}
-    for job in unique:
-        src = job["source"]
-        by_source.setdefault(src, []).append(job)
+    for job in new_jobs:
+        by_source.setdefault(job["source"], []).append(job)
 
     lines = [
         f"# Raw Job Scan — {now}",
-        f"\n**Total matches: {len(unique)}** across {len(by_source)} sources",
-        "\n> Review this list manually. Feed to AI scanner for scoring.\n",
+        f"\n**NEW jobs today: {len(new_jobs)}** | "
+        f"Valid URLs: {len(all_valid)} | "
+        f"Broken/expired removed: {broken_count} | "
+        f"Total in database: {total_seen}",
+        "\n> Feed this file to Claude for AI scoring and prioritization.\n",
         "---\n",
     ]
 
-    for source, jobs in sorted(by_source.items()):
-        lines.append(f"## {source} ({len(jobs)} matches)\n")
-        lines.append("| Company | Role | Location | URL |")
-        lines.append("|---------|------|----------|-----|")
-        for job in jobs:
-            url = job["url"]
-            lines.append(f"| {job['company']} | {job['title']} | {job['location']} | {url} |")
-        lines.append("")
+    if not new_jobs:
+        lines.append("## No new jobs found today\n")
+        lines.append("All discovered jobs have been seen in previous scans.\n")
+    else:
+        for source, jobs in sorted(by_source.items()):
+            lines.append(f"## {source} — {len(jobs)} new\n")
+            lines.append("| Company | Role | Location | URL |")
+            lines.append("|---------|------|----------|-----|")
+            for job in jobs:
+                lines.append(
+                    f"| {job['company']} | {job['title']} "
+                    f"| {job['location']} | {job['url']} |")
+            lines.append("")
 
-    lines.append("---")
-    lines.append("\n## Manual Search Targets\n")
-    lines.append("These require manual browsing — copy search links and paste into browser:\n")
-    manual = [
-        ("LinkedIn", "https://www.linkedin.com/jobs/search/?keywords=healthcare+data+analyst&f_WT=2&f_E=1%2C2", "Healthcare Data Analyst, Remote, Entry"),
-        ("LinkedIn", "https://www.linkedin.com/jobs/search/?keywords=clinical+data+analyst&f_WT=2&f_E=1%2C2", "Clinical Data Analyst, Remote, Entry"),
-        ("LinkedIn", "https://www.linkedin.com/jobs/search/?keywords=business+intelligence+analyst+healthcare&f_WT=2&f_E=1%2C2", "BI Analyst Healthcare, Remote"),
-        ("LinkedIn", "https://www.linkedin.com/jobs/search/?keywords=prior+authorization+analyst&f_WT=2&f_E=1%2C2", "Prior Auth Analyst, Remote"),
-        ("USAJobs", "https://www.usajobs.gov/search?k=data+analyst&p=1&f=IM", "Federal Data Analyst, Remote"),
-        ("USAJobs", "https://www.usajobs.gov/search?k=health+informatics&p=1&f=IM", "Health Informatics, Remote"),
-        ("Indeed", "https://www.indeed.com/jobs?q=healthcare+data+analyst&l=Remote&explvl=entry_level", "Healthcare Data Analyst, Remote, Entry"),
-        ("Indeed", "https://www.indeed.com/jobs?q=clinical+data+analyst&l=Remote", "Clinical Data Analyst, Remote"),
-        ("Glassdoor", "https://www.glassdoor.com/Job/remote-healthcare-data-analyst-jobs-SRCH_IL.0,6_IS11047_KO7,30.htm", "Healthcare Data Analyst Remote"),
-        ("Remotive", "https://remotive.com/remote-jobs/data/analyst", "Data Analyst Remote"),
-        ("RemoteOK", "https://remoteok.com/remote-data+analyst-jobs", "Data Analyst Remote"),
-        ("Jobicy", "https://jobicy.com/jobs/remote-data-analyst", "Data Analyst Remote"),
-        ("The Muse", "https://www.themuse.com/jobs?filter=Data+%26+Analytics&filter=100%25+Remote", "Data Analytics Remote"),
-        ("Wellfound", "https://wellfound.com/jobs?role=Data+Analyst&remote=true", "Data Analyst Remote Startups"),
-        ("Dice", "https://www.dice.com/jobs?q=healthcare+data+analyst&location=Remote", "Healthcare Data Analyst Remote"),
+    lines += [
+        "---\n",
+        "## Manual Search Links\n",
+        "These require browser — open each and scan for new roles:\n",
+        "| Source | URL | Search |",
+        "|--------|-----|--------|",
+        "| LinkedIn | https://www.linkedin.com/jobs/search/?keywords=healthcare+data+analyst&f_WT=2&f_E=1%2C2 | Healthcare Data Analyst Remote Entry |",
+        "| LinkedIn | https://www.linkedin.com/jobs/search/?keywords=clinical+data+analyst&f_WT=2&f_E=1%2C2 | Clinical Data Analyst Remote Entry |",
+        "| LinkedIn | https://www.linkedin.com/jobs/search/?keywords=prior+authorization+analyst&f_WT=2&f_E=1%2C2 | Prior Auth Analyst Remote |",
+        "| LinkedIn | https://www.linkedin.com/jobs/search/?keywords=business+intelligence+analyst+healthcare&f_WT=2 | BI Analyst Healthcare Remote |",
+        "| LinkedIn | https://www.linkedin.com/jobs/search/?keywords=power+bi+healthcare+analyst&f_WT=2 | Power BI Healthcare Remote |",
+        "| USAJobs | https://www.usajobs.gov/search?k=data+analyst&p=1&f=IM | Federal Data Analyst Remote |",
+        "| USAJobs | https://www.usajobs.gov/search?k=health+informatics&p=1&f=IM | Health Informatics Remote |",
+        "| USAJobs | https://www.usajobs.gov/search?k=bioinformatics&p=1&f=IM | Bioinformatics Remote |",
+        "| Indeed | https://www.indeed.com/jobs?q=healthcare+data+analyst&l=Remote&explvl=entry_level | Healthcare Data Analyst Remote Entry |",
+        "| Indeed | https://www.indeed.com/jobs?q=clinical+data+analyst+power+bi&l=Remote | Clinical Data Analyst Power BI |",
+        "| Glassdoor | https://www.glassdoor.com/Job/remote-healthcare-data-analyst-jobs-SRCH_IL.0,6_IS11047_KO7,30.htm | Healthcare Data Analyst Remote |",
+        "| RemoteOK | https://remoteok.com/remote-data+analyst-jobs | Data Analyst Remote |",
+        "| Wellfound | https://wellfound.com/jobs?role=Data+Analyst&remote=true | Data Analyst Startups Remote |",
+        "| The Muse | https://www.themuse.com/jobs?filter=Data+%26+Analytics&filter=100%25+Remote | Data Analytics Remote |",
+        "| Dice | https://www.dice.com/jobs?q=healthcare+data+analyst&location=Remote | Healthcare Data Analyst Remote |",
+        "| Jobright.ai | https://jobright.ai/jobs/Data-Analyst?remote=true | Data Analyst Remote |",
     ]
-    lines.append("| Source | Link | Search |")
-    lines.append("|--------|------|--------|")
-    for source, url, search in manual:
-        lines.append(f"| {source} | {url} | {search} |")
 
-    output = "\n".join(lines)
-    
-    try:
-        Path(OUTPUT_FILE).parent.mkdir(parents=True, exist_ok=True)
-        with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-            f.write(output)
-        print(f"Saved {len(unique)} jobs to {OUTPUT_FILE}")
-    except Exception as e:
-        print(f"Could not write to {OUTPUT_FILE}: {e}")
-        backup = "raw_scan.md"
-        with open(backup, "w", encoding="utf-8") as f:
-            f.write(output)
-        print(f"Saved to {backup} instead")
-
-    return unique
+    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT_FILE.write_text("\n".join(lines), encoding="utf-8")
+    log(f"Saved to {OUTPUT_FILE}")
 
 
 def main():
-    print(f"Starting free job scan — {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}")
+    start = datetime.datetime.now()
+    log(f"=== Free Job Scanner starting {start.strftime('%Y-%m-%d %H:%M')} ===")
+
+    seen = load_seen()
+    log(f"Known jobs in database: {len(seen)}")
+
     all_jobs = []
 
-    print(f"Scanning {len(GREENHOUSE_COMPANIES)} Greenhouse companies...")
-    for i, company in enumerate(GREENHOUSE_COMPANIES):
-        jobs = scan_greenhouse(company)
-        all_jobs.extend(jobs)
-        if jobs:
-            print(f"  {company}: {len(jobs)} match(es)")
-        if i % 10 == 9:
+    log(f"Scanning {len(GREENHOUSE_COMPANIES)} Greenhouse boards...")
+    for i, co in enumerate(GREENHOUSE_COMPANIES):
+        found = scan_greenhouse(co)
+        if found:
+            log(f"  {co}: {len(found)} match(es)")
+        all_jobs.extend(found)
+        if i % 15 == 14:
             time.sleep(1)
 
-    print(f"Scanning {len(LEVER_COMPANIES)} Lever companies...")
-    for i, company in enumerate(LEVER_COMPANIES):
-        jobs = scan_lever(company)
-        all_jobs.extend(jobs)
-        if jobs:
-            print(f"  {company}: {len(jobs)} match(es)")
-        if i % 10 == 9:
+    log(f"Scanning {len(LEVER_COMPANIES)} Lever boards...")
+    for i, co in enumerate(LEVER_COMPANIES):
+        found = scan_lever(co)
+        if found:
+            log(f"  {co}: {len(found)} match(es)")
+        all_jobs.extend(found)
+        if i % 15 == 14:
             time.sleep(1)
 
-    print(f"Scanning {len(ASHBY_COMPANIES)} Ashby companies...")
-    for i, company in enumerate(ASHBY_COMPANIES):
-        jobs = scan_ashby(company)
-        all_jobs.extend(jobs)
-        if jobs:
-            print(f"  {company}: {len(jobs)} match(es)")
-        if i % 10 == 9:
+    log(f"Scanning {len(ASHBY_COMPANIES)} Ashby boards...")
+    for i, co in enumerate(ASHBY_COMPANIES):
+        found = scan_ashby(co)
+        if found:
+            log(f"  {co}: {len(found)} match(es)")
+        all_jobs.extend(found)
+        if i % 15 == 14:
             time.sleep(1)
 
-    print("Scanning Remotive API...")
-    remotive_jobs = scan_remotive()
-    all_jobs.extend(remotive_jobs)
-    print(f"  Remotive: {len(remotive_jobs)} match(es)")
+    log("Scanning Remotive API...")
+    rem = scan_remotive()
+    log(f"  Remotive: {len(rem)} match(es)")
+    all_jobs.extend(rem)
 
-    print("Scanning Jobicy feed...")
-    jobicy_jobs = scan_jobicy()
-    all_jobs.extend(jobicy_jobs)
-    print(f"  Jobicy: {len(jobicy_jobs)} match(es)")
+    log("Scanning Jobicy feeds...")
+    job = scan_jobicy()
+    log(f"  Jobicy: {len(job)} match(es)")
+    all_jobs.extend(job)
 
-    unique = write_output(all_jobs)
-    print(f"\nDone. {len(unique)} unique jobs found.")
-    print(f"Review: {OUTPUT_FILE}")
-    return len(unique)
+    # Deduplicate by URL before validation
+    url_seen = set()
+    deduped = []
+    for j in all_jobs:
+        if j["url"] not in url_seen:
+            url_seen.add(j["url"])
+            deduped.append(j)
+    log(f"Total after URL dedup: {len(deduped)}")
+
+    # Validate URLs
+    valid_jobs, broken_count = validate_batch(deduped)
+
+    # Filter to only new jobs
+    new_jobs = filter_new(valid_jobs, seen)
+    log(f"New jobs (not seen before): {len(new_jobs)}")
+
+    # Save seen database
+    save_seen(seen)
+
+    # Write output
+    write_output(new_jobs, valid_jobs, broken_count, seen)
+
+    elapsed = (datetime.datetime.now() - start).seconds
+    log(f"=== Done in {elapsed}s | {len(new_jobs)} new | {broken_count} broken removed ===")
 
 
 if __name__ == "__main__":
