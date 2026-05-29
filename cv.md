@@ -44,6 +44,17 @@ production-quality output. Available immediately.
 
 ## Projects and Experience
 
+### Hospital Readmission Analysis - Looker Studio
+**Independent Healthcare Analytics Project | Looker Studio | May 2026**
+
+Built an interactive Looker Studio dashboard connecting directly to Google
+Sheets as a live data source. Dashboard includes scorecards for total patients
+and readmissions, bar charts by diagnosis and insurance type, pie chart by
+discharge destination, and a dropdown filter for dynamic exploration.
+Demonstrates end-to-end BI workflow: Google Sheets data prep feeding into
+Looker Studio visualization layer.
+Link: datastudio.google.com/reporting/7d8410ea-6d2c-4c91-9f24-ab16f2809e22
+
 ### Hospital Readmission Spreadsheet Analysis
 **Independent Healthcare Analytics Project | Google Sheets | May 2026**
 
