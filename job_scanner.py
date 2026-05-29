@@ -51,55 +51,91 @@ REMOTE_KEYWORDS = [
 
 # ── COMPANY LISTS ─────────────────────────────────────────────────────────────
 GREENHOUSE_COMPANIES = [
-    # Healthcare / Health Tech
+    # Healthcare Payers / Insurance
     "natera", "truveta", "freenome", "flatironhealth", "komodohealth",
-    "strivehealthmanagement", "headway", "modernhealth", "doximity",
-    "cloverhealth", "omadahealth", "smarterdx", "oscarhealth",
-    "springhealth66", "rxsense", "veracyte", "includedhealth", "cityblock",
-    "vizai", "pathai", "verily", "talkiatry", "sondermind", "commure",
-    "akasa", "ambiencehealthcare", "abridge", "welbehealth", "dreemhealth",
-    "mcghealth", "sifthealthcare", "transcarent", "ansiblehealth",
-    "quantilehealth", "healthverity", "midihealth", "virta",
-    "machinifyinc", "medanalyticsllc", "molina", "centene",
-    "premierinc", "cotiviti", "privia", "evolent", "nomi-health",
-    # Biotech / Genomics
-    "insitro", "recursion", "benchling", "guardanthealth", "tempus",
-    "sagebionetworks", "primemedicine", "pacbio", "roivant",
-    "exscientia", "owkin", "paige", "schrodinger", "deepgenomics",
+    "headway", "modernhealth", "doximity", "cloverhealth", "omadahealth",
+    "smarterdx", "oscarhealth", "springhealth66", "rxsense", "veracyte",
+    "includedhealth", "cityblock", "vizai", "pathai", "verily",
+    "talkiatry", "sondermind", "commure", "akasa", "ambiencehealthcare",
+    "abridge", "welbehealth", "mcghealth", "sifthealthcare", "transcarent",
+    "ansiblehealth", "quantilehealth", "healthverity", "midihealth",
+    "virta", "machinifyinc", "precisionmedicinegroup", "cotiviti",
+    "evolent", "insitro", "recursion", "benchling", "guardanthealth",
+    "tempus", "sagebionetworks", "primemedicine", "pacbio",
+    "exscientia", "owkin", "paige", "scale", "labelbox", "snorkelai",
+    "anthropic", "openai", "cohere", "databricks", "hex-inc", "retool",
+    "statsig", "apollo", "datavant", "segment", "gitlab", "cloudflare",
+    "stripe", "ramp", "brex", "deel", "harnham", "insightglobal",
+    "publicconsultinggroup", "10xgenomics", "illumina", "grail",
+    "foundationmedicine", "adaptivebiotech", "premierinc",
+    "strivehealthmanagement", "nomi-health", "privia",
+    "paradigmbiopharma", "roivant", "schrodinger", "deepgenomics",
     "arcus", "novavax", "assemblybio", "envedabio", "vaxcyte",
-    "10xgenomics", "illumina", "pacificbiosciences", "nanostorage",
-    "adaptivebiotech", "grail", "foundationmedicine",
-    # AI / Data / Tech
-    "scale", "labelbox", "snorkelai", "anthropic", "openai", "cohere",
-    "databricks", "hex-inc", "retool", "statsig", "apollo",
-    "windfall", "pitchbookdata", "datavant", "segment", "goody",
-    "acorns", "openx", "perplexityai", "tailscale", "gitlab",
-    "cloudflare", "stripe", "ramp", "brex", "deel", "remote",
-    "harnham", "insightglobal",
+    "pitchbookdata", "windfall", "openx", "perplexityai",
+    "acorns", "goody", "tailscale",
+    # Additional Healthcare
+    "accolade", "carrotfertility", "hingehealth", "swordhealth",
+    "noom", "premisehealth", "crossoverhealth", "collectivehealth",
+    "brightspring", "aveanna", "bayada", "kindredhealthcare",
+    "molina", "centene", "magellanhealth", "beaconhealthoptions",
+    "valueoptions", "multiplan", "zelis", "change-healthcare",
+    "experian-health", "inovalon", "healthstream", "healthgrades",
+    "castlighthealth", "healtheon", "livanova", "nuvation",
+    "tempus-ex-machina", "flatiron", "caris", "foundation-medicine",
+    "guardant", "exact-sciences", "neogenomics", "myriad-genetics",
+    "navisite", "nuvolo", "nuance", "nuancecommunications",
+    "optum", "unitedhealthgroup", "aetna", "cigna", "humana",
+    "anthem", "bcbs", "wellmark", "premera", "regence",
+    # Analytics / BI Companies
+    "tableau", "alteryx", "microstrategy", "qlik", "domo",
+    "looker", "thoughtspot", "sisense", "yellowfinbi",
+    "gooddata", "metabase", "mode", "sigma-computing",
+    "montecarlo", "datafold", "atlan", "alation", "collibra",
+    "informatica", "talend", "fivetran", "stitch", "airbyte",
+    "dbtlabs", "astronomer", "prefect", "dagster",
+    # CROs / Life Sciences Data
+    "iqvia", "parexel", "ppd", "medpace", "covance",
+    "syneos", "pra", "icon", "ergoresearch", "clinipace",
+    "medrio", "medidata", "veeva", "oracle-health",
+    "cerner", "epic", "allscripts", "athenahealth",
+    "nextgen", "greenway", "eclinicalworks",
     # Staffing / Consulting
-    "publicconsultinggroup", "precisionscientia", "precisionmedicinegroup",
+    "mckinsey", "boozallen", "leidos", "saic", "mitre",
+    "icf", "mathematica", "urban-institute", "rand",
+    "norc", "westat", "abt-associates",
 ]
 
 LEVER_COMPANIES = [
     # Healthcare
     "hsag", "headway", "modernhealth", "cityblock", "virta",
-    "bighealth", "collaborative-drug-discovery", "teselagen",
-    "clover-health", "omada", "included-health", "strive-health",
-    "qualified-health-pbc", "interra-health", "wellth", "solace",
-    "catch-health", "alignment-healthcare", "privia-health",
-    "evolent-health", "meridian-health-plan", "devoted-health",
-    "bright-health", "oscar-health", "bright-health-group",
-    # Biotech
+    "bighealth", "teselagen", "clover-health", "omada",
+    "included-health", "strive-health", "qualified-health-pbc",
+    "interra-health", "wellth", "solace", "alignment-healthcare",
+    "privia-health", "evolent-health", "devoted-health",
     "insitro", "arc-institute", "formation-bio", "generate-biomedicines",
     "newlimit", "retro-biosciences", "gretel", "cradle",
-    "prime-medicine", "orbital-therapeutics", "recursion-pharmaceuticals",
-    # AI / Data
-    "scale-ai", "outlier-ai", "invisible-technologies",
-    "turing", "snorkel-ai", "surge-hq",
-    # Tech
-    "hex", "retool", "statsig", "mercury", "attio", "pave",
-    "linear", "beehiiv", "ramp", "dbt-labs", "leavitt-group",
-    "windfall-data", "harnham",
+    "scale-ai", "outlier-ai", "invisible-technologies", "turing",
+    "snorkel-ai", "surge-hq", "hex", "retool", "statsig", "mercury",
+    "attio", "pave", "linear", "beehiiv", "ramp", "dbt-labs",
+    "leavitt-group", "windfall-data", "harnham",
+    "catch-health", "bright-health", "devoted-health",
+    "collective-health", "accolade", "carebridge", "carrot-fertility",
+    "hinge-health", "sword-health", "noom", "ro-health",
+    "premise-health", "crossover-health", "apree-health",
+    # Additional Health Tech
+    "talkspace", "betterhelp", "cerebral", "brightside",
+    "ginger", "lyra-health", "spring-health", "vida-health",
+    "livongo", "teladoc", "mdlive", "amwell", "doctor-on-demand",
+    "98point6", "forward", "one-medical", "carbon-health",
+    "color-health", "everlywell", "letsgetchecked", "nurx",
+    "thirty-madison", "keeps", "hims", "ro",
+    # Pharma Data / RWE
+    "flatiron-health", "aetion", "cerner-enviza", "genesis-research",
+    "open-health", "purple-squirrel", "inovalon", "healthverity",
+    "datavant", "veeva", "medidata", "iqvia", "parexel",
+    # Analytics Staffing
+    "harnham", "burtch-works", "insight-global", "robert-half",
+    "apex-systems", "tek-systems", "kelly-services",
 ]
 
 ASHBY_COMPANIES = [
@@ -109,7 +145,21 @@ ASHBY_COMPANIES = [
     "hex", "retool", "cursor", "harvey", "perplexity",
     "goody", "acorns", "levels", "clay", "attio", "pave",
     "statsig", "mercury", "workos", "beehiiv", "apollographql",
-    "catch-health", "strive", "interra-health", "aligned-ops",
+    "catch-health", "strive", "interra-health",
+    "hinge-health", "sword-health", "carrot-fertility",
+    "noom", "ro", "premise-health", "crossover-health",
+    "collectivehealth", "accolade",
+    # Additional
+    "talkspace", "cerebral", "brightside", "ginger",
+    "lyra-health", "vida-health", "everlywell", "nurx",
+    "thirty-madison", "carbon-health", "color-health",
+    "forward-health", "one-medical", "98point6",
+    "aetion", "genesis-research", "open-health",
+    "purple-squirrel", "inovalon",
+    "dbtlabs", "fivetran", "airbyte", "prefect",
+    "dagster", "astronomer", "montecarlo", "datafold",
+    "atlan", "alation", "collibra", "sigma-computing",
+    "mode-analytics", "metabase", "thoughtspot",
 ]
 
 REMOTIVE_URLS = [
@@ -388,6 +438,51 @@ def write_output(new_jobs, all_valid, broken_count, seen):
     log(f"Saved to {OUTPUT_FILE}")
 
 
+
+def scan_arbeitnow():
+    jobs = []
+    seen_urls = set()
+    for page in range(1, 6):
+        try:
+            r = requests.get(f'https://www.arbeitnow.com/api/job-board-api?page={page}', timeout=12)
+            if r.status_code != 200:
+                break
+            data = r.json().get('data', [])
+            if not data:
+                break
+            for job in data:
+                title = job.get('title', '')
+                location = job.get('location', '')
+                remote = job.get('remote', False)
+                url = job.get('url', '')
+                if url in seen_urls:
+                    continue
+                seen_urls.add(url)
+                if is_title_match(title) and (remote or is_remote(location + ' ' + title)):
+                    jobs.append({'company': job.get('company_name', 'Unknown'), 'title': title, 'location': 'Remote' if remote else location, 'url': url, 'source': 'Arbeitnow'})
+        except Exception:
+            break
+        time.sleep(0.5)
+    return jobs
+
+def scan_remoteok():
+    jobs = []
+    try:
+        r = requests.get('https://remoteok.com/api', timeout=12, headers={'User-Agent': 'Mozilla/5.0'})
+        if r.status_code == 200:
+            for job in r.json():
+                if not isinstance(job, dict):
+                    continue
+                title = job.get('position', '')
+                url = job.get('url', '')
+                if not url.startswith('http'):
+                    url = 'https://remoteok.com' + url
+                if is_title_match(title):
+                    jobs.append({'company': job.get('company', 'Unknown'), 'title': title, 'location': 'Remote', 'url': url, 'source': 'RemoteOK'})
+    except Exception:
+        pass
+    return jobs
+
 def main():
     start = datetime.datetime.now()
     log(f"=== Free Job Scanner starting {start.strftime('%Y-%m-%d %H:%M')} ===")
@@ -396,6 +491,15 @@ def main():
     log(f"Known jobs in database: {len(seen)}")
 
     all_jobs = []
+
+    print('Scanning Arbeitnow...')
+    arb = scan_arbeitnow()
+    print(f'  Arbeitnow: {len(arb)} matches')
+    all_jobs.extend(arb)
+    print('Scanning RemoteOK...')
+    rok = scan_remoteok()
+    print(f'  RemoteOK: {len(rok)} matches')
+    all_jobs.extend(rok)
 
     log(f"Scanning {len(GREENHOUSE_COMPANIES)} Greenhouse boards...")
     for i, co in enumerate(GREENHOUSE_COMPANIES):
