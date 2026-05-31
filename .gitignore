@@ -45,3 +45,11 @@ bun.lock
 .claude/memory/
 career-dashboard
 package-lock.json
+
+node_modules/
+output/
+reports/
+data/scan_log.txt
+.playwright-mcp/
+*.pdf
+*.tex
