@@ -1,0 +1,980 @@
+# Portal Scanner Configuration — Brandon Duplantier
+# Tuned for: bioinformatics, computational biology, longevity research,
+#             computer vision (life sciences), life sciences data engineering
+# Constraints: Remote only | Max $49,000/yr | Intern/Part-time/Contract/Junior OK
+#
+# Strategy (3 levels):
+#   1. Playwright → careers_url of each company (real-time, reliable)
+#   2. Greenhouse API → structured JSON (fast, Greenhouse-only)
+#   3. WebSearch with site: filters (broad discovery, may be stale)
+
+# -- Title filter --
+# At least 1 positive must match AND 0 negatives must match (case-insensitive).
+
+title_filter:
+  positive:
+    # -- Bioinformatics core --
+    - "Bioinformatics"
+    - "Bioinformatician"
+    - "Computational Biology"
+    - "Computational Biologist"
+    - "Genomics"
+    - "Genomicist"
+    - "Sequencing"
+    - "Omics"
+    - "Proteomics"
+    - "Transcriptomics"
+    - "Epigenomics"
+    - "Single-cell"
+    - "scRNA"
+    - "Metagenomics"
+    - "Variant Analysis"
+    - "Variant Calling"
+    - "Pipeline Developer"
+    # -- Longevity / Aging --
+    - "Longevity"
+    - "Aging"
+    - "Ageing"
+    - "Senescence"
+    - "Lifespan"
+    - "Geroscience"
+    - "Healthspan"
+    - "Rejuvenation"
+    - "Epigenetic Reprogramming"
+    # -- Life Sciences data / engineering --
+    - "Life Sciences Data"
+    - "Life Sciences Engineer"
+    - "Biomedical Data"
+    - "Biomedical Informatics"
+    - "Clinical Bioinformatics"
+    - "Research Data Engineer"
+    - "Scientific Data"
+    - "Biological Data"
+    - "Drug Discovery Data"
+    - "Cheminformatics"
+    # -- Computer vision (bio) --
+    - "Pathology AI"
+    - "Digital Pathology"
+    - "Cell Imaging"
+    - "Medical Imaging"
+    - "Histopathology"
+    - "Microscopy"
+    - "Image Analysis"
+    - "Computer Vision" # kept broad — scanner narrows by company
+    # -- Research roles --
+    - "Research Intern"
+    - "Research Associate"
+    - "Research Analyst"
+    - "Research Engineer"
+    - "Research Scientist"
+    - "Computational Research"
+    - "Biosciences"
+    - "Biotechnology"
+    - "Biotech"
+    - "Drug Discovery"
+    - "Structural Biology"
+    - "Protein Design"
+    - "Protein Engineering"
+    - "Synthetic Biology"
+    - "Systems Biology"
+    - "Population Genetics"
+    - "Functional Genomics"
+    - "CRISPR"
+    - "NGS"
+    # -- Health data / analytics / epidemiology (CRO, payer, government, clinical) --
+    - "Health Data Analyst"
+    - "Clinical Data Analyst"
+    - "Data Analyst"
+    - "Health Informatics"
+    - "Biostatistics"
+    - "Biostatistician"
+    - "Epidemiologist"
+    - "Public Health Analyst"
+    - "Health Analytics"
+    - "Clinical Analytics"
+    - "Genomic Data"
+    - "Informatics Analyst"
+    - "Data Scientist"
+    - "Research Analyst"
+
+  negative:
+    # -- Wet lab / bench science (dry lab computational only) --
+    - "Wet Lab"
+    - "Bench Scientist"
+    - "Lab Technician"
+    - "Laboratory Technician"
+    - "Cell Culture Technician"
+    - "Sample Collection"
+    - "Sample Processing"
+    - "Sample Preparation"
+    - "PCR Technician"
+    - "Bench Technician"
+    - "Histotechnician"
+    - "Histotechnologist"
+    - "Phlebotomist"
+    - "Animal Technician"
+    - "Vivarium"
+    # -- On-site signals in title --
+    - "On-site Only"
+    - "Fully On-site"
+    - "In-person Only"
+    # -- Irrelevant tech stacks --
+    - ".NET"
+    - "Java "
+    - "iOS"
+    - "Android"
+    - "PHP"
+    - "Ruby on Rails"
+    - "Embedded"
+    - "Firmware"
+    - "FPGA"
+    - "ASIC"
+    - "Blockchain"
+    - "Web3"
+    - "Crypto"
+    - "Salesforce Admin"
+    - "SAP "
+    - "Oracle EBS"
+    - "Mainframe"
+    - "COBOL"
+    - "DevOps"
+    - "Marketing"
+    - "Sales Representative"
+    - "Account Executive"
+    - "Recruiter"
+    - "HR "
+    - "Finance Manager"
+    - "Accountant"
+    - "Legal "
+    - "Lawyer"
+    - "Attorney"
+
+  seniority_boost:
+    # Not required but increase relevance signal
+    - "Junior"
+    - "Intern"
+    - "Associate"
+    - "Entry"
+    - "Part-time"
+    - "Contract"
+    - "Freelance"
+
+# -- Search queries --
+# Bioinformatics / computational biology / longevity / life sciences focus.
+
+search_queries:
+
+  # -- Greenhouse: bioinformatics internships --
+  - name: Greenhouse — Bioinformatics Intern (remote)
+    query: 'site:boards.greenhouse.io OR site:job-boards.greenhouse.io "bioinformatics" intern OR internship remote'
+    enabled: true
+
+  - name: Greenhouse — Computational Biology (remote)
+    query: 'site:boards.greenhouse.io OR site:job-boards.greenhouse.io "computational biology" OR "computational biologist" remote'
+    enabled: true
+
+  - name: Greenhouse — Genomics / Omics roles
+    query: 'site:boards.greenhouse.io OR site:job-boards.greenhouse.io "genomics" OR "transcriptomics" OR "single-cell" intern OR "research associate" remote'
+    enabled: true
+
+  - name: Greenhouse — Longevity / Aging Research
+    query: 'site:boards.greenhouse.io OR site:job-boards.greenhouse.io "longevity" OR "aging research" OR "geroscience" OR "senescence" intern OR junior remote'
+    enabled: true
+
+  - name: Greenhouse — Life Sciences Data Engineer
+    query: 'site:boards.greenhouse.io OR site:job-boards.greenhouse.io "life sciences" "data engineer" OR "research data" intern OR junior remote'
+    enabled: true
+
+  # -- Ashby: bioinformatics and life sciences --
+  - name: Ashby — Bioinformatics / Comp Bio (remote)
+    query: 'site:jobs.ashbyhq.com "bioinformatics" OR "computational biology" OR "genomics" remote intern OR "research associate" OR junior'
+    enabled: true
+
+  - name: Ashby — Longevity / Drug Discovery
+    query: 'site:jobs.ashbyhq.com "longevity" OR "aging" OR "drug discovery" OR "protein design" intern OR junior remote'
+    enabled: true
+
+  - name: Ashby — Life Sciences Data / CV
+    query: 'site:jobs.ashbyhq.com "life sciences" OR "biomedical" "data" OR "computer vision" OR "image analysis" intern OR junior remote'
+    enabled: true
+
+  # -- Lever: bioinformatics --
+  - name: Lever — Bioinformatics / Comp Bio
+    query: 'site:jobs.lever.co "bioinformatics" OR "computational biology" OR "genomics" intern OR junior remote'
+    enabled: true
+
+  - name: Lever — Longevity / Biotech Research
+    query: 'site:jobs.lever.co "longevity" OR "aging" OR "drug discovery" OR "synthetic biology" intern OR "research associate" remote'
+    enabled: true
+
+  # -- LinkedIn / broad aggregators --
+  - name: LinkedIn — Bioinformatics Intern Remote
+    query: '"bioinformatics intern" OR "bioinformatics internship" remote site:linkedin.com/jobs'
+    enabled: true
+
+  - name: LinkedIn — Computational Biology Intern Remote
+    query: '"computational biology intern" OR "computational biology internship" remote site:linkedin.com/jobs'
+    enabled: true
+
+  - name: LinkedIn — Longevity Research Intern
+    query: '"longevity research" OR "aging research" intern OR internship remote site:linkedin.com/jobs'
+    enabled: true
+
+  - name: LinkedIn — Part-time Bioinformatics Remote
+    query: '"bioinformatics" "part-time" OR "part time" remote site:linkedin.com/jobs'
+    enabled: true
+
+  - name: LinkedIn — Contract Bioinformatics Remote
+    query: '"bioinformatics" contract OR freelance remote site:linkedin.com/jobs'
+    enabled: true
+
+  - name: LinkedIn — Life Sciences Data Engineer Junior
+    query: '"life sciences" "data engineer" OR "bioinformatics engineer" junior OR intern remote site:linkedin.com/jobs'
+    enabled: true
+
+  - name: LinkedIn — Computer Vision Life Sciences
+    query: '"computer vision" "life sciences" OR "pathology" OR "cell imaging" OR "biological" intern OR junior remote site:linkedin.com/jobs'
+    enabled: true
+
+  # -- Specialized bio job boards --
+  - name: Nature Jobs — Bioinformatics Remote
+    query: 'site:nature.com/naturecareers "bioinformatics" OR "computational biology" remote intern OR junior'
+    enabled: true
+
+  - name: Science Careers — Bioinformatics
+    query: 'site:sciencecareers.sciencemag.org "bioinformatics" OR "computational biology" remote intern'
+    enabled: true
+
+  - name: Biospace — Bioinformatics / Longevity
+    query: 'site:biospace.com "bioinformatics" OR "computational biology" OR "longevity" remote intern OR junior'
+    enabled: true
+
+  - name: RemoteOK — Life Sciences / Bioinformatics
+    query: 'site:remoteok.com "bioinformatics" OR "computational biology" OR "genomics" OR "life sciences"'
+    enabled: true
+
+  - name: WeWorkRemotely — Bioinformatics
+    query: 'site:weworkremotely.com "bioinformatics" OR "computational biology" OR "genomics" OR "life sciences"'
+    enabled: true
+
+  - name: Himalayas — Bioinformatics Remote
+    query: 'site:himalayas.app "bioinformatics" OR "computational biology" OR "genomics" OR "longevity" remote'
+    enabled: true
+
+  - name: YC Jobs — Biotech / Longevity Startups
+    query: 'site:workatastartup.com "bioinformatics" OR "computational biology" OR "longevity" OR "drug discovery" remote intern OR junior'
+    enabled: true
+
+  - name: HN Who's Hiring — Bioinformatics / Biotech
+    query: 'site:news.ycombinator.com "bioinformatics" OR "computational biology" OR "longevity" OR "aging" remote intern'
+    enabled: true
+
+  # -- NIH / government research --
+  - name: USAJobs — Bioinformatics (NIH/NCI)
+    query: 'site:usajobs.gov "bioinformatics" OR "computational biology" NIH OR NCI OR NCBI remote OR telework student intern'
+    enabled: true
+
+  # -- University research / academic postings --
+  - name: University of Arizona — Research Opportunities
+    query: '"university of arizona" "bioinformatics" OR "computational biology" intern OR "research assistant" remote OR online'
+    enabled: true
+
+  - name: Broad Institute — Student / Intern
+    query: 'site:broadinstitute.org OR site:boards.greenhouse.io/broadinstitute "intern" OR "student" OR "research associate" remote'
+    enabled: true
+
+  - name: HHMI / Janelia — Student Internships
+    query: 'site:janelia.org OR site:hhmi.org intern OR "summer research" "bioinformatics" OR "computational" OR "computer vision" remote OR virtual'
+    enabled: true
+
+  # -- Conservation / ecology (drone_fish_counts adjacent) --
+  - name: Conservation Bio / Ecological CV
+    query: '"conservation" OR "wildlife" "bioinformatics" OR "computer vision" OR "image analysis" intern OR remote research'
+    enabled: true
+
+  # -- Bioinformatics-specific job boards --
+  - name: Bioinformatics.org — Jobs Board
+    query: 'site:bioinformatics.org/jobs "remote" OR "telecommute" bioinformatics OR "computational biology" OR genomics'
+    enabled: true
+
+  - name: Science Careers — Junior / Analyst Roles Remote
+    query: 'site:jobs.sciencecareers.org "bioinformatics" OR "computational biology" OR "genomics" "remote" junior OR analyst OR associate'
+    enabled: true
+
+  # -- LinkedIn: ongoing/junior remote roles (durability-focused) --
+  - name: LinkedIn — Junior Bioinformatics Analyst Remote Ongoing
+    query: '"bioinformatics analyst" OR "research analyst bioinformatics" OR "junior bioinformatics" OR "junior computational biologist" remote "full-time" site:linkedin.com/jobs'
+    enabled: true
+
+  - name: LinkedIn — Health Data Analyst Remote Ongoing
+    query: '"health data analyst" OR "genomics analyst" OR "clinical data analyst" bioinformatics OR genomics remote "full-time" OR "part-time" site:linkedin.com/jobs'
+    enabled: true
+
+  # -- USAJobs: health data analyst and CDC roles --
+  - name: USAJobs — Health Data Analyst Bioinformatics Remote
+    query: 'site:usajobs.gov "health data analyst" OR "bioinformatics" OR "public health analyst" "remote" OR "telework" GS-5 OR GS-7 OR GS-9 OR student'
+    enabled: true
+
+  - name: USAJobs — CDC Public Health Data Remote
+    query: 'site:usajobs.gov CDC "data analyst" OR "bioinformatics" OR "epidemiologist" OR "health informatics" "remote" OR "telework" GS-5 OR GS-7 OR Pathways intern'
+    enabled: true
+
+  # -- CRO and health tech ongoing remote roles --
+  - name: LinkedIn — CRO Bioinformatics Data Remote
+    query: '"Covance" OR "Labcorp" OR "ICON plc" OR "Syneos Health" OR "Parexel" OR "PPD" bioinformatics OR "data analyst" OR "clinical data" remote site:linkedin.com/jobs'
+    enabled: true
+
+  - name: LinkedIn — Health Tech Analytics Remote Junior
+    query: '"Komodo Health" OR "Flatiron Health" OR "Veracyte" OR "Guardant Health" bioinformatics OR "data analyst" OR "research analyst" remote junior OR associate site:linkedin.com/jobs'
+    enabled: true
+
+  - name: LinkedIn — Payer PBM Health Analytics Remote
+    query: '"Optum" OR "Humana" OR "CVS Health" OR "Cigna Evernorth" OR "Express Scripts" "data analyst" OR "bioinformatics" OR "health analytics" remote junior OR associate OR "entry level" site:linkedin.com/jobs'
+    enabled: true
+
+  # -- NIH-funded university bioinformatics cores --
+  - name: NIH-Funded University Bioinformatics Cores
+    query: '"bioinformatics core" OR "genomics core" "research assistant" OR "data analyst" OR "bioinformatician" remote OR "remote eligible" NIH site:linkedin.com/jobs OR site:jobs.lever.co OR site:jobs.ashbyhq.com'
+    enabled: true
+
+# -- Tracked companies --
+# Checked directly via Playwright or API. Grouped by domain.
+
+tracked_companies:
+
+  # ── Longevity / Aging Research ─────────────────────────────────────────
+
+  - name: Calico (Alphabet)
+    careers_url: https://www.calicolabs.com/careers
+    scan_method: websearch
+    scan_query: 'site:calicolabs.com/careers OR "calico" "bioinformatics" OR "computational" OR "genomics" intern OR junior'
+    notes: "Google/Alphabet longevity research lab. Computational biology team."
+    enabled: true
+
+  - name: Altos Labs
+    careers_url: https://altoslabs.com/careers
+    scan_method: websearch
+    scan_query: 'site:altoslabs.com/careers "bioinformatics" OR "computational" OR "genomics" intern OR junior'
+    notes: "Bezos-backed longevity/rejuvenation research. Top longevity target."
+    enabled: true
+
+  - name: Retro Biosciences
+    careers_url: https://job-boards.greenhouse.io/retrobiosciences
+    api: https://boards-api.greenhouse.io/v1/boards/retrobiosciences/jobs
+    notes: "Sam Altman-backed longevity startup. Autophagy, plasma, reprogramming."
+    enabled: true
+
+  - name: NewLimit
+    careers_url: https://www.newlimit.com/careers
+    scan_method: websearch
+    scan_query: '"NewLimit" OR "new limit" careers "bioinformatics" OR "computational" OR "epigenetics"'
+    notes: "Coinbase/Andreessen-backed. Epigenetic reprogramming for longevity."
+    enabled: true
+
+  - name: Gordian Biotechnology
+    careers_url: https://jobs.ashbyhq.com/gordian
+    scan_method: websearch
+    scan_query: 'site:jobs.ashbyhq.com/gordian OR "Gordian Biotechnology" careers'
+    notes: "SENS-adjacent longevity research. Spermatogonial stem cells."
+    enabled: true
+
+  - name: BioAge Labs
+    careers_url: https://job-boards.greenhouse.io/bioagelabs
+    api: https://boards-api.greenhouse.io/v1/boards/bioagelabs/jobs
+    notes: "Aging biomarkers and drug discovery. Data-driven longevity."
+    enabled: true
+
+  - name: Unity Biotechnology
+    careers_url: https://unitybiotechnology.com/careers
+    scan_method: websearch
+    scan_query: 'site:unitybiotechnology.com/careers OR "Unity Biotechnology" "bioinformatics" OR "computational"'
+    notes: "Senolytic drugs for aging diseases."
+    enabled: true
+
+  - name: Turn Biotechnologies
+    careers_url: https://www.turn.bio/careers
+    scan_method: websearch
+    scan_query: '"Turn Biotechnologies" OR "turn.bio" careers "bioinformatics" OR "computational" OR "RNA"'
+    notes: "mRNA-based cell reprogramming for aging."
+    enabled: true
+
+  - name: Life Biosciences
+    careers_url: https://www.lifebiosciences.com/careers
+    scan_method: websearch
+    scan_query: '"Life Biosciences" careers "bioinformatics" OR "computational"'
+    notes: "Longevity-focused biotech incubator."
+    enabled: true
+
+  - name: AgeX Therapeutics
+    careers_url: https://agexinc.com/careers
+    scan_method: websearch
+    scan_query: '"AgeX Therapeutics" careers "bioinformatics" OR "computational" OR "genomics"'
+    notes: "Telomere and rejuvenation biology research."
+    enabled: true
+
+  - name: Ora Biomedical
+    careers_url: https://www.orabiomedical.com/careers
+    scan_method: websearch
+    scan_query: '"Ora Biomedical" careers "bioinformatics" OR "computational"'
+    notes: "C. elegans-focused longevity research. Remote-friendly."
+    enabled: true
+
+  # ── Computational Drug Discovery / AI for Biology ──────────────────────
+
+  - name: Recursion Pharmaceuticals
+    careers_url: https://job-boards.greenhouse.io/recursionpharmaceuticals
+    api: https://boards-api.greenhouse.io/v1/boards/recursionpharmaceuticals/jobs
+    notes: "AI-first drug discovery. Large computational biology team."
+    enabled: true
+
+  - name: Insitro
+    careers_url: https://jobs.lever.co/insitro
+    notes: "ML for drug discovery (Daphne Koller). Strong bioinformatics hiring."
+    enabled: true
+
+  - name: Insilico Medicine
+    careers_url: https://insilico.com/careers
+    scan_method: websearch
+    scan_query: 'site:insilico.com/careers "bioinformatics" OR "computational biology" OR "genomics" intern OR junior'
+    notes: "AI-driven drug discovery. Remote-friendly."
+    enabled: true
+
+  - name: AbSci
+    careers_url: https://job-boards.greenhouse.io/absci
+    api: https://boards-api.greenhouse.io/v1/boards/absci/jobs
+    notes: "AI protein design. Portland OR. Has computational roles."
+    enabled: true
+
+  - name: Generate Biomedicines
+    careers_url: https://job-boards.greenhouse.io/generatebiomedicines
+    api: https://boards-api.greenhouse.io/v1/boards/generatebiomedicines/jobs
+    notes: "Protein generation AI. Flagship protein design lab."
+    enabled: true
+
+  - name: BigHat Biosciences
+    careers_url: https://jobs.ashbyhq.com/bighat
+    scan_method: websearch
+    scan_query: 'site:jobs.ashbyhq.com/bighat OR "BigHat Biosciences" careers'
+    notes: "ML-guided antibody design."
+    enabled: true
+
+  - name: Schrödinger
+    careers_url: https://job-boards.greenhouse.io/schrodinger
+    api: https://boards-api.greenhouse.io/v1/boards/schrodinger/jobs
+    notes: "Computational chemistry / drug discovery software. Strong remote culture."
+    enabled: true
+
+  - name: Verily (Alphabet)
+    careers_url: https://verily.com/careers
+    scan_method: websearch
+    scan_query: 'site:verily.com/careers "bioinformatics" OR "computational biology" OR "genomics" intern OR junior remote'
+    notes: "Alphabet life sciences research. Precision health + longevity projects."
+    enabled: true
+
+  - name: Relay Therapeutics
+    careers_url: https://job-boards.greenhouse.io/relaytherapeutics
+    api: https://boards-api.greenhouse.io/v1/boards/relaytherapeutics/jobs
+    notes: "Motion-based drug design. Computational chemistry team."
+    enabled: true
+
+  - name: Blueprint Medicines
+    careers_url: https://job-boards.greenhouse.io/blueprintmedicines
+    api: https://boards-api.greenhouse.io/v1/boards/blueprintmedicines/jobs
+    notes: "Precision oncology. Genomics/bioinformatics team."
+    enabled: true
+
+  - name: Vividion Therapeutics
+    careers_url: https://job-boards.greenhouse.io/vividion
+    api: https://boards-api.greenhouse.io/v1/boards/vividion/jobs
+    notes: "Chemoproteomics drug discovery. Computational biology hiring."
+    enabled: true
+
+  - name: Isomorphic Labs (DeepMind/Google)
+    careers_url: https://job-boards.greenhouse.io/isomorphiclabs
+    api: https://boards-api.greenhouse.io/v1/boards/isomorphiclabs/jobs
+    notes: "London/Lausanne. AlphaFold spin-out. AI for drug discovery."
+    enabled: true
+
+  # ── Genomics / Sequencing / Single-cell ────────────────────────────────
+
+  - name: 10x Genomics
+    careers_url: https://job-boards.greenhouse.io/10xgenomics
+    api: https://boards-api.greenhouse.io/v1/boards/10xgenomics/jobs
+    notes: "Single-cell sequencing hardware + bioinformatics software."
+    enabled: true
+
+  - name: Pacific Biosciences (PacBio)
+    careers_url: https://job-boards.greenhouse.io/pacificbiosciences
+    api: https://boards-api.greenhouse.io/v1/boards/pacificbiosciences/jobs
+    notes: "Long-read sequencing. Bioinformatics team growing."
+    enabled: true
+
+  - name: Illumina
+    careers_url: https://jobs.lever.co/illumina
+    notes: "Sequencing market leader. Large bioinformatics org."
+    enabled: true
+
+  - name: Seer Bio
+    careers_url: https://job-boards.greenhouse.io/seerbio
+    api: https://boards-api.greenhouse.io/v1/boards/seerbio/jobs
+    notes: "Proteomics/mass spec + ML. Early-stage proteomics company."
+    enabled: true
+
+  - name: Nautilus Biotechnology
+    careers_url: https://job-boards.greenhouse.io/nautilus
+    api: https://boards-api.greenhouse.io/v1/boards/nautilus/jobs
+    notes: "Single-molecule proteomics platform. Data science team."
+    enabled: true
+
+  - name: Tempus AI
+    careers_url: https://job-boards.greenhouse.io/tempus
+    api: https://boards-api.greenhouse.io/v1/boards/tempus/jobs
+    notes: "Genomics + AI for precision medicine. Large bioinformatics team."
+    enabled: true
+
+  - name: Foundation Medicine (Roche)
+    careers_url: https://job-boards.greenhouse.io/foundationmedicine
+    api: https://boards-api.greenhouse.io/v1/boards/foundationmedicine/jobs
+    notes: "Genomic profiling for oncology. Bioinformatics intern programs."
+    enabled: true
+
+  - name: Grail (Illumina)
+    careers_url: https://job-boards.greenhouse.io/grail
+    api: https://boards-api.greenhouse.io/v1/boards/grail/jobs
+    notes: "Early cancer detection via cfDNA sequencing."
+    enabled: true
+
+  - name: Oxford Nanopore Technologies
+    careers_url: https://jobs.lever.co/nanoporetech
+    notes: "UK. Portable long-read sequencing. Bioinformatics pipeline team."
+    enabled: true
+
+  # ── Synthetic Biology / Protein Engineering ─────────────────────────────
+
+  - name: Ginkgo Bioworks
+    careers_url: https://job-boards.greenhouse.io/ginkgobioworks
+    api: https://boards-api.greenhouse.io/v1/boards/ginkgobioworks/jobs
+    notes: "Synthetic biology platform. Boston. Large bioinformatics team."
+    enabled: true
+
+  - name: Twist Bioscience
+    careers_url: https://job-boards.greenhouse.io/twistbioscience
+    api: https://boards-api.greenhouse.io/v1/boards/twistbioscience/jobs
+    notes: "Synthetic DNA. Bioinformatics + data science roles."
+    enabled: true
+
+  - name: Zymergen (Ginkgo)
+    careers_url: https://job-boards.greenhouse.io/zymergen
+    api: https://boards-api.greenhouse.io/v1/boards/zymergen/jobs
+    notes: "Synthetic biology (now Ginkgo subsidiary). Bioinformatics."
+    enabled: true
+
+  # ── Computer Vision — Life Sciences / Pathology AI ─────────────────────
+
+  - name: Paige (PathologyAI)
+    careers_url: https://job-boards.greenhouse.io/paige
+    api: https://boards-api.greenhouse.io/v1/boards/paige/jobs
+    notes: "AI for digital pathology. FDA-cleared CV for cancer diagnosis."
+    enabled: true
+
+  - name: PathAI
+    careers_url: https://job-boards.greenhouse.io/pathai
+    api: https://boards-api.greenhouse.io/v1/boards/pathai/jobs
+    notes: "AI pathology platform. Strong CV/ML intern program."
+    enabled: true
+
+  - name: Aiforia
+    careers_url: https://aiforia.com/careers
+    scan_method: websearch
+    scan_query: '"Aiforia" careers "computer vision" OR "image analysis" OR "pathology"'
+    notes: "Helsinki. AI image analysis for life sciences and pathology."
+    enabled: true
+
+  - name: Visiopharm
+    careers_url: https://visiopharm.com/careers
+    scan_method: websearch
+    scan_query: '"Visiopharm" careers "computer vision" OR "image analysis" OR "pathology"'
+    notes: "Digital pathology image analysis. Remote-friendly."
+    enabled: true
+
+  - name: Indica Labs
+    careers_url: https://indicalab.com/careers
+    scan_method: websearch
+    scan_query: '"Indica Labs" careers "bioinformatics" OR "image analysis" OR "pathology"'
+    notes: "HALO image analysis platform for pathology."
+    enabled: true
+
+  - name: Safari AI
+    careers_url: https://job-boards.greenhouse.io/safariai
+    api: https://boards-api.greenhouse.io/v1/boards/safariai/jobs
+    notes: "Computer vision AI. Adjacent to drone_fish_counts domain."
+    enabled: true
+
+  # ── Research Institutes / Non-profit ────────────────────────────────────
+
+  - name: Broad Institute
+    careers_url: https://job-boards.greenhouse.io/broadinstitute
+    api: https://boards-api.greenhouse.io/v1/boards/broadinstitute/jobs
+    notes: "MIT/Harvard. Top genomics/bioinformatics research institute. Posts student roles."
+    enabled: true
+
+  - name: Chan Zuckerberg Biohub
+    careers_url: https://job-boards.greenhouse.io/czbiohub
+    api: https://boards-api.greenhouse.io/v1/boards/czbiohub/jobs
+    notes: "SF. CZ-funded biomedical research. Bioinformatics + single-cell."
+    enabled: true
+
+  - name: Allen Institute for Cell Science
+    careers_url: https://job-boards.greenhouse.io/alleninstitute
+    api: https://boards-api.greenhouse.io/v1/boards/alleninstitute/jobs
+    notes: "Seattle. Cellular imaging + bioinformatics. Open-source data."
+    enabled: true
+
+  - name: Jackson Laboratory (JAX)
+    careers_url: https://job-boards.greenhouse.io/jacksonlaboratory
+    api: https://boards-api.greenhouse.io/v1/boards/jacksonlaboratory/jobs
+    notes: "Bar Harbor ME + Farmington CT. Genetics/genomics research. Internship programs."
+    enabled: true
+
+  - name: Cold Spring Harbor Laboratory
+    careers_url: https://cshl.edu/careers
+    scan_method: websearch
+    scan_query: 'site:cshl.edu/careers "bioinformatics" OR "computational biology" intern OR "research assistant"'
+    notes: "Iconic genetics research institute. Offers student internships."
+    enabled: true
+
+  - name: Stowers Institute
+    careers_url: https://www.stowers.org/about/careers
+    scan_method: websearch
+    scan_query: '"Stowers Institute" careers "bioinformatics" OR "computational" intern OR junior'
+    notes: "Kansas City. Basic biomedical research. Bioinformatics core."
+    enabled: true
+
+  - name: Morgridge Institute for Research
+    careers_url: https://morgridge.org/careers
+    scan_method: websearch
+    scan_query: '"Morgridge Institute" careers "bioinformatics" OR "computational" intern'
+    notes: "Madison WI. Biomedical research non-profit. Remote-possible roles."
+    enabled: true
+
+  # ── Pharma / Biotech with computational teams ────────────────────────────
+
+  - name: Genentech (Roche)
+    careers_url: https://job-boards.greenhouse.io/genentech
+    api: https://boards-api.greenhouse.io/v1/boards/genentech/jobs
+    notes: "South SF. Large bioinformatics/computational biology team. Intern program."
+    enabled: true
+
+  - name: Regeneron
+    careers_url: https://job-boards.greenhouse.io/regeneron
+    api: https://boards-api.greenhouse.io/v1/boards/regeneron/jobs
+    notes: "Tarrytown NY. Strong genetics/genomics bioinformatics group."
+    enabled: true
+
+  - name: Novo Nordisk
+    careers_url: https://job-boards.greenhouse.io/novonordisk
+    api: https://boards-api.greenhouse.io/v1/boards/novonordisk/jobs
+    notes: "Remote-friendly. Strong data science + bioinformatics in obesity/diabetes."
+    enabled: true
+
+  - name: AstraZeneca
+    careers_url: https://job-boards.greenhouse.io/astrazeneca
+    api: https://boards-api.greenhouse.io/v1/boards/astrazeneca/jobs
+    notes: "Cambridge UK / Gaithersburg MD. Bioinformatics and oncology data science."
+    enabled: true
+
+  # ── Bioinformatics / Lab Software ────────────────────────────────────────
+
+  - name: Benchling
+    careers_url: https://job-boards.greenhouse.io/benchling
+    api: https://boards-api.greenhouse.io/v1/boards/benchling/jobs
+    notes: "Lab data management platform for biotech. Strong engineering culture."
+    enabled: true
+
+  - name: BenchSci
+    careers_url: https://job-boards.greenhouse.io/benchsci
+    api: https://boards-api.greenhouse.io/v1/boards/benchsci/jobs
+    notes: "AI for reagent selection and experimental design. Toronto. Remote-friendly."
+    enabled: true
+
+  - name: Cradle
+    careers_url: https://jobs.ashbyhq.com/cradlebio
+    scan_method: websearch
+    scan_query: 'site:jobs.ashbyhq.com/cradlebio OR "Cradle" "protein" "bioinformatics" OR "ML" OR "computational"'
+    notes: "Zurich/Amsterdam. AI-guided protein design. ML researcher roles."
+    enabled: true
+
+  - name: Causaly
+    careers_url: https://jobs.ashbyhq.com/causaly
+    scan_method: websearch
+    scan_query: 'site:jobs.ashbyhq.com/causaly'
+    notes: "London/Athens. Biomedical knowledge graph + AI literature mining."
+    enabled: true
+
+  - name: Recursion (Bioxcel adjacent)
+    careers_url: https://jobs.ashbyhq.com/recursion
+    scan_method: websearch
+    scan_query: 'site:jobs.ashbyhq.com/recursion "bioinformatics" OR "computational"'
+    notes: "Check for any Ashby postings not in Greenhouse."
+    enabled: false
+
+  # ── Conservation / Ecological Bioinformatics ─────────────────────────────
+
+  - name: Movebank / Max Planck
+    careers_url: https://www.movebank.org
+    scan_method: websearch
+    scan_query: '"Movebank" OR "Max Planck Institute" animal tracking "bioinformatics" OR "computational" OR "data" intern remote'
+    notes: "Animal movement ecology data. Adjacent to Nalaquq/drone work."
+    enabled: true
+
+  - name: iNaturalist / California Academy
+    careers_url: https://www.calacademy.org/careers
+    scan_method: websearch
+    scan_query: '"iNaturalist" OR "California Academy of Sciences" "bioinformatics" OR "data" OR "computer vision" intern remote'
+    notes: "Biodiversity informatics. Computer vision on species images."
+    enabled: true
+
+  - name: Wildlife Computers
+    careers_url: https://wildlifecomputers.com/about/careers
+    scan_method: websearch
+    scan_query: '"Wildlife Computers" careers "bioinformatics" OR "data" OR "software" OR "python"'
+    notes: "Animal telemetry tech company. Remote-possible."
+    enabled: true
+
+  # ── Contract Research Organizations (CROs) ──────────────────────────────
+  # Stable employers, 1k–100k+ employees, real revenue, often remote-first data teams.
+
+  - name: Labcorp Drug Development (Covance)
+    careers_url: https://jobs.labcorp.com/
+    scan_method: websearch
+    scan_query: 'site:jobs.labcorp.com "bioinformatics" OR "data analyst" OR "genomics" OR "computational" remote OR "work from home" junior OR associate'
+    notes: "CRO + clinical lab. 60k+ employees. Remote data analyst roles. STABLE employer."
+    enabled: true
+
+  - name: ICON plc
+    careers_url: https://www.iconplc.com/careers/
+    scan_method: websearch
+    scan_query: '"ICON plc" careers "bioinformatics" OR "data analyst" OR "genomics" OR "biostatistics" remote junior OR associate'
+    notes: "Global CRO. Dublin HQ + remote-flexible US workforce. Biostatistics and data management teams."
+    enabled: true
+
+  - name: Syneos Health
+    careers_url: https://syneoshealth.com/careers
+    scan_method: websearch
+    scan_query: '"Syneos Health" careers "bioinformatics" OR "data analyst" OR "clinical data" OR "genomics" remote junior OR associate'
+    notes: "CRO. Remote-first workforce model. Clinical data science and analytics roles."
+    enabled: true
+
+  - name: Parexel
+    careers_url: https://jobs.parexel.com/
+    scan_method: websearch
+    scan_query: 'site:jobs.parexel.com "bioinformatics" OR "data analyst" OR "genomics" OR "biostatistics" remote junior OR associate OR entry-level'
+    notes: "Global CRO. Large remote workforce. Entry-level clinical data analyst roles regularly posted."
+    enabled: true
+
+  - name: PPD / Thermo Fisher Scientific
+    careers_url: https://jobs.thermofisher.com/
+    scan_method: websearch
+    scan_query: 'site:jobs.thermofisher.com "bioinformatics" OR "data analyst" OR "genomics" OR "clinical data" remote junior OR associate PPD OR "life sciences"'
+    notes: "PPD CRO acquired by Thermo Fisher. Remote data analyst roles. Large stable employer 100k+ employees."
+    enabled: true
+
+  # ── Health Tech and Digital Health ──────────────────────────────────────
+  # Revenue-stage companies with established bioinformatics / analytics teams.
+
+  - name: Komodo Health
+    careers_url: https://www.komodohealth.com/careers
+    scan_method: websearch
+    scan_query: '"Komodo Health" careers "bioinformatics" OR "data analyst" OR "research analyst" OR "health data" remote junior OR associate'
+    notes: "Healthcare data platform (claims + EHR + RWD). Remote-first. Python analytics team. ~500 employees."
+    enabled: true
+
+  - name: Flatiron Health (Roche)
+    careers_url: https://flatiron.com/careers/
+    scan_method: websearch
+    scan_query: '"Flatiron Health" careers "bioinformatics" OR "data analyst" OR "research analyst" OR "oncology data" remote junior OR associate'
+    notes: "Oncology real-world evidence. NYC HQ + remote-flexible. Roche-backed. ~1k employees."
+    enabled: true
+
+  - name: Veracyte
+    careers_url: https://job-boards.greenhouse.io/veracyte
+    api: https://boards-api.greenhouse.io/v1/boards/veracyte/jobs
+    notes: "Genomic diagnostics for thyroid/bladder/breast cancer. Remote-friendly. Bioinformatics + genomics data roles."
+    enabled: true
+
+  - name: Guardant Health
+    careers_url: https://job-boards.greenhouse.io/guardanthealth
+    api: https://boards-api.greenhouse.io/v1/boards/guardanthealth/jobs
+    notes: "Liquid biopsy / cfDNA genomics. Redwood City CA HQ. ~1,500 employees. Remote roles exist."
+    enabled: true
+
+  # ── Insurance, PBM, and Payer Analytics ─────────────────────────────────
+  # Very large stable employers; remote data analyst pipelines are ongoing, not fixed-term.
+
+  - name: Optum (UnitedHealth Group)
+    careers_url: https://careers.unitedhealthgroup.com/
+    scan_method: websearch
+    scan_query: 'site:careers.unitedhealthgroup.com "bioinformatics" OR "health data analyst" OR "genomics" OR "data scientist" remote junior OR associate OR "entry level"'
+    notes: "Optum is UHG health services + analytics arm. 400k+ employees. Massive remote workforce. Junior data roles regularly open."
+    enabled: true
+
+  - name: CVS Health / Aetna Analytics
+    careers_url: https://jobs.cvshealth.com/
+    scan_method: websearch
+    scan_query: 'site:jobs.cvshealth.com "bioinformatics" OR "health analytics" OR "data analyst" OR "clinical data" remote junior OR associate OR "entry level"'
+    notes: "CVS Health + Aetna. 300k+ employees. Large remote analytics team. Health data and clinical informatics analyst roles."
+    enabled: true
+
+  - name: Humana
+    careers_url: https://careers.humana.com/
+    scan_method: websearch
+    scan_query: 'site:careers.humana.com "bioinformatics" OR "data analyst" OR "health analytics" OR "clinical data" remote junior OR associate OR "entry level"'
+    notes: "Health insurance + data analytics. Louisville KY + remote. Python data analyst roles. ~60k employees."
+    enabled: true
+
+  - name: Cigna Evernorth / Express Scripts
+    careers_url: https://jobs.cigna.com/
+    scan_method: websearch
+    scan_query: 'site:jobs.cigna.com "bioinformatics" OR "data analyst" OR "health data" OR "clinical analytics" OR "pharmacy data" remote junior OR associate OR "entry level"'
+    notes: "Express Scripts is now Cigna Evernorth. PBM + analytics. Remote data analyst roles. Large stable employer."
+    enabled: true
+
+  # ── Public Health and Government ─────────────────────────────────────────
+  # Federal/state roles are permanent, telework-eligible, benefits-rich. GS-5/7/9 entry level.
+
+  - name: CDC (via USAJobs)
+    careers_url: https://www.usajobs.gov/Search/Results?k=bioinformatics+CDC&f=RA&p=1
+    scan_method: websearch
+    scan_query: 'site:usajobs.gov CDC "bioinformatics" OR "data analyst" OR "public health analyst" OR "epidemiologist" remote OR telework GS-5 OR GS-7 OR GS-9 OR Pathways OR intern'
+    notes: "CDC remote and telework positions. GS-5/7/9 entry level. Pathways Internship Program for current students. Federal benefits, stable employment."
+    enabled: true
+
+  - name: NIH Pathways and Bioinformatics (USAJobs)
+    careers_url: https://www.usajobs.gov/Search/Results?k=bioinformatics+NIH&f=RA
+    scan_method: websearch
+    scan_query: 'site:usajobs.gov NIH "bioinformatics" OR "data analyst" OR "health informatics" OR "genomics" remote OR telework GS-5 OR GS-7 OR GS-9 OR Pathways OR "recent graduate"'
+    notes: "NIH includes NCI, NHGRI, NCBI, NIGMS. Pathways Internship + Recent Graduates programs for enrolled students. Many roles telework-eligible. Federal benefits."
+    enabled: true
+
+  # ── Fisheries, Wildlife, and Conservation Agencies ──────────────────────
+  # Federal agencies with telework-eligible data analyst roles and Pathways programs.
+
+  - name: NOAA Fisheries (National Marine Fisheries Service)
+    careers_url: https://www.usajobs.gov/Search/Results?k=NOAA+fisheries+data&f=RA
+    scan_method: websearch
+    scan_query: 'site:usajobs.gov NOAA "fisheries" OR "marine" "data analyst" OR "bioinformatics" OR "population" OR "genomics" remote OR telework GS-5 OR GS-7 OR GS-9 OR Pathways'
+    notes: "National Marine Fisheries Service. Direct domain match: salmon population monitoring, fisheries genomics, ecological CV. Pathways program for current students. Telework-eligible."
+    enabled: true
+
+  - name: US Fish and Wildlife Service
+    careers_url: https://www.usajobs.gov/Search/Results?k=fish+wildlife+data&f=RA
+    scan_method: websearch
+    scan_query: 'site:usajobs.gov "fish and wildlife" "data analyst" OR "bioinformatics" OR "population" OR "wildlife biologist" OR "data scientist" remote OR telework GS-5 OR GS-7 OR Pathways'
+    notes: "USFWS. Conservation data, population monitoring, species distribution modeling. Pathways eligibility for enrolled students."
+    enabled: true
+
+  - name: Alaska Department of Fish and Game
+    careers_url: https://www.governmentjobs.com/careers/alaska
+    scan_method: websearch
+    scan_query: '"Alaska Department of Fish and Game" "data analyst" OR "bioinformatics" OR "population" OR "computational" OR "genetics" remote OR telework OR "work from home"'
+    notes: "Direct alignment with Nalaquq/Kuskokwim salmon work. State agency data roles, some remote. Salmon + subsistence fisheries data."
+    enabled: true
+
+  - name: Bureau of Ocean Energy Management (BOEM)
+    careers_url: https://www.usajobs.gov/Search/Results?k=BOEM+data&f=RA
+    scan_method: websearch
+    scan_query: 'site:usajobs.gov BOEM "data analyst" OR "bioinformatics" OR "environmental" OR "marine" remote OR telework GS-5 OR GS-7 OR Pathways'
+    notes: "BOEM. Ocean/marine environmental data. Telework-eligible federal roles. Pathways for students."
+    enabled: true
+
+  # ── Ecological Informatics and Biodiversity Platforms ───────────────────
+
+  - name: Cornell Lab of Ornithology
+    careers_url: https://www.birds.cornell.edu/home/jobs/
+    scan_method: websearch
+    scan_query: '"Cornell Lab of Ornithology" careers "data analyst" OR "bioinformatics" OR "data scientist" OR "software" OR "research assistant" remote OR "work from home"'
+    notes: "eBird, Merlin, Macaulay Library. Biodiversity informatics + CV on biological specimens. Remote-possible data and engineering roles."
+    enabled: true
+
+  - name: GBIF (Global Biodiversity Information Facility)
+    careers_url: https://www.gbif.org/about/contact
+    scan_method: websearch
+    scan_query: '"GBIF" OR "Global Biodiversity Information Facility" careers "data" OR "informatics" OR "bioinformatics" OR "developer" remote'
+    notes: "Copenhagen. Global open biodiversity data platform. Remote-possible engineering and data roles. European-based but some remote."
+    enabled: true
+
+  - name: OBIS (Ocean Biodiversity Information System)
+    careers_url: https://obis.org
+    scan_method: websearch
+    scan_query: '"OBIS" OR "Ocean Biodiversity Information System" careers "data" OR "informatics" OR "bioinformatics" remote'
+    notes: "International ocean biodiversity data. IOC-UNESCO affiliated. Remote data roles."
+    enabled: true
+
+  # ── Healthcare Analytics / Clinical Data (Stable Revenue-Stage) ──────────
+
+  - name: Change Healthcare (Optum)
+    careers_url: https://careers.unitedhealthgroup.com/
+    scan_method: websearch
+    scan_query: '"Change Healthcare" OR "Optum Insight" "data analyst" OR "health data" OR "clinical data" OR "informatics" remote junior OR associate OR "entry level" site:linkedin.com/jobs OR site:careers.unitedhealthgroup.com'
+    notes: "Change Healthcare now part of Optum/UHG. Health data interoperability + analytics. Remote roles. 10k+ employees."
+    enabled: true
+
+  - name: Cotiviti
+    careers_url: https://www.cotiviti.com/careers
+    scan_method: websearch
+    scan_query: '"Cotiviti" careers "data analyst" OR "health analytics" OR "clinical data" OR "informatics" remote junior OR associate OR "entry level"'
+    notes: "Healthcare analytics and data management. ~2k employees. Remote-friendly. Claims and clinical data analysis."
+    enabled: true
+
+  - name: Inovalon
+    careers_url: https://www.inovalon.com/careers/
+    scan_method: websearch
+    scan_query: '"Inovalon" careers "data analyst" OR "health data" OR "clinical data" OR "bioinformatics" OR "informatics" remote junior OR associate'
+    notes: "Healthcare data analytics platform. ~3k employees. Remote-first workforce. Real-world evidence and outcomes data."
+    enabled: true
+
+  - name: Evolent Health
+    careers_url: https://www.evolenthealth.com/careers
+    scan_method: websearch
+    scan_query: '"Evolent Health" careers "data analyst" OR "health data" OR "clinical data" OR "analytics" remote junior OR associate OR "entry level"'
+    notes: "Value-based care analytics. ~2k employees. Remote data analyst roles. Claims + clinical data focus."
+    enabled: true
+
+  # ── University Bioinformatics Cores (direct HR portals) ─────────────────
+  # These post student research assistant and junior analyst roles on their own systems,
+  # not on ATS platforms. Search via university HR portals and LinkedIn.
+
+  - name: University of Arizona — Bioinformatics Core
+    careers_url: https://hr.arizona.edu/jobs
+    scan_method: websearch
+    scan_query: 'site:hr.arizona.edu OR site:arizona.edu/jobs "bioinformatics" OR "computational biology" OR "research assistant" OR "data analyst" student OR part-time OR "hourly"'
+    notes: "Brandon's own institution. Student research assistant positions, sometimes posted only on UA HR. Check directly each scan."
+    enabled: true
+
+  - name: Johns Hopkins — Bioinformatics Core
+    careers_url: https://jobs.jhu.edu/
+    scan_method: websearch
+    scan_query: 'site:jobs.jhu.edu "bioinformatics" OR "computational biology" OR "genomics" OR "data analyst" research assistant OR junior remote OR "work from home"'
+    notes: "JHU Bloomberg School of Public Health + JHSPH bioinformatics core. Posted on JHU HR. Some remote-eligible."
+    enabled: true
+
+  - name: University of Michigan — Bioinformatics Core
+    careers_url: https://careers.umich.edu/
+    scan_method: websearch
+    scan_query: 'site:careers.umich.edu "bioinformatics" OR "computational biology" OR "genomics" OR "data analyst" research assistant OR junior remote OR "work from home"'
+    notes: "U of M has a strong bioinformatics core. Research assistant and junior analyst roles posted on UM HR."
+    enabled: true
+
+  - name: UCSD — Bioinformatics Core
+    careers_url: https://jobs.ucsd.edu/
+    scan_method: websearch
+    scan_query: 'site:jobs.ucsd.edu "bioinformatics" OR "computational biology" OR "genomics" OR "data analyst" research assistant OR junior remote OR "work from home"'
+    notes: "UCSD has one of the largest bioinformatics programs in the US. HR system separate from ATS platforms."
+    enabled: true
+
+  - name: UT Austin — Bioinformatics Core
+    careers_url: https://utaustin.wd1.myworkdayjobs.com/UTstaff
+    scan_method: websearch
+    scan_query: 'site:utaustin.wd1.myworkdayjobs.com "bioinformatics" OR "computational biology" OR "genomics" OR "data analyst" research assistant OR junior remote OR "work from home"'
+    notes: "UT Austin Center for Biomedical Research Support + bioinformatics cores. Workday HR system."
+    enabled: true
