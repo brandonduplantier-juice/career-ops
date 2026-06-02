@@ -38,6 +38,24 @@
 
 
 
+\## CraftPath — Path of Exile 2 Crafting Optimizer
+
+\- Flask web application deployed to production at craftpath.onrender.com
+
+\- Dual-edition architecture: public online optimizer and desktop edition
+
+&#x20; with live trade API integration
+
+\- Secure session handling designed to match PoB-style local credential storage,
+
+&#x20; never transmitting user cookies through hosted infrastructure
+
+\- Full open source release pipeline via GitHub and GitHub CLI
+
+\- Live production URL, versioned GitHub releases, downloadable desktop package
+
+
+
 \## Python Analytics Portfolio
 
 \- 9 SkillBuilder modules covering EDA, joins, merges, groupby, visualization

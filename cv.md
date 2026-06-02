@@ -123,6 +123,19 @@ at 28%, 8 points above the 15% target. Used CALCULATE and RANKX DAX
 measures. Features gauge, treemap, scatter plot, and interactive slicers.
 github.com/brandonduplantier-juice/python-portfolio/tree/main/HR-Attrition-PowerBI
 
+CraftPath — Path of Exile 2 Crafting Optimizer
+Independent Python/Flask Project | 2025 - Present
+
+Built and shipped a full-stack Flask web application optimizing crafting decisions
+for Path of Exile 2. Designed dual-edition architecture: online optimizer deployed
+to Render and a desktop edition with live market pricing via REST API integration.
+Implemented secure session handling using PoB-style in-app credential entry, never
+transmitting user cookies through hosted infrastructure. Managed full open source
+release pipeline: GitHub repository, versioned releases via GitHub CLI, downloadable
+desktop package, and live production deployment.
+Live: craftpath.onrender.com
+GitHub: github.com/brandonduplantier-juice/CraftPath
+
 Medication Adherence and Organ Rejection Risk Scoring System
 Independent Biomedical Project | Python | 2024 - Present
 

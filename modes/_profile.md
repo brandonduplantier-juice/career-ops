@@ -34,6 +34,7 @@
 | Longevity / Aging | Long-term research goal (founding a longevity company), research interests section | cv.md |
 | Conservation / Ecological CV | drone_fish_counts YOLO pipeline (production, deployed, real users) | cv.md + github.com/Nalaquq/drone_fish_counts |
 | Data Analysis / Life Sciences | Healthcare dataset EDA, Pandas cleaning pipelines, anomaly detection | cv.md |
+| Flask / Web App / Backend Python | Full-stack production deployment (CraftPath), REST API integration, Render cloud deployment, secure session design | craftpath.onrender.com + github.com/brandonduplantier-juice/CraftPath |
 | Remote-first orgs | 100% remote-native, 15+ years independent professional, field-tested | cv.md |
 
 ## Your Exit Narrative
@@ -63,7 +64,24 @@ This is production-grade CV work on biological data — rare for a sophomore.
 - Portfolio: https://brandonpython.netlify.app
 - GitHub: https://github.com/brandonduplantier-juice
 - Flagship project: https://github.com/Nalaquq/drone_fish_counts (salmon YOLO CV pipeline)
-- When to share: always — for any bioinformatics, computational biology, or CV/ML role
+- Live web app: https://craftpath.onrender.com (Flask full-stack, dual-edition, production-deployed)
+- CraftPath repo: https://github.com/brandonduplantier-juice/CraftPath
+- When to share: always — for any bioinformatics, computational biology, CV/ML, or web/data application role
+
+## Confirmed Technical Skills (by Project)
+
+| Skill | Confirmed by | Notes |
+|-------|-------------|-------|
+| Flask web development | CraftPath (craftpath.onrender.com) | Full-stack app, dual-edition architecture |
+| REST API integration | CraftPath — live trade pricing endpoint | Client-side REST consumption in Python |
+| Render cloud deployment | CraftPath production deployment | Live at craftpath.onrender.com |
+| Python (Pandas, NumPy, SciPy) | Analytics portfolio, readmission model | Production pipelines |
+| scikit-learn / ML | Hospital Readmission Prediction Model | Random Forest, ROC-AUC 0.587 |
+| SQL | Analytics portfolio, coursework | Intermediate — CTEs, window functions, joins |
+| Tableau / Power BI / Looker Studio | Healthcare BI projects | Multiple published dashboards |
+| React + Vite + Tailwind + Netlify | Python Analytics Portfolio | Published frontend at brandonpython.netlify.app |
+| GitHub / GitHub CLI | CraftPath release pipeline | Versioned releases, open source repo |
+| YOLO / Computer Vision | drone_fish_counts (contracted, Nalaquq) | Production deployment, real end users |
 
 ## Your Comp Targets
 
