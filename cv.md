@@ -16,10 +16,10 @@ production-quality output. Available immediately.
 
 Technical Skills
 - Python: Pandas, NumPy, SciPy, Matplotlib, Plotly, Flask, PyInstaller, Jupyter
-- R: basic (Google Data Analytics coursework)
-- SQL: intermediate, data extraction, validation, joins, filtering, window functions, CTEs
+- R: logistic regression (glm), odds ratios with confidence intervals, ROC/AUC, data analysis
+- SQL: intermediate, data extraction, validation, joins, filtering, window functions, CTEs, Snowflake, PostgreSQL
 - Automation: Make.com, Airtable, Claude API, Google Sheets, end-to-end pipelines
-- Visualization: Matplotlib, Plotly, Power BI, Tableau, Looker Studio, Google Sheets dashboards
+- Visualization: Matplotlib, Plotly, Power BI, Tableau, Looker Studio, Excel and Google Sheets dashboards
 - BI Tools: Power BI Desktop, Tableau Public, Looker Studio, DAX measures, interactive dashboards, slicers
 - Machine Learning: scikit-learn, Random Forest, Logistic Regression, ROC-AUC, class imbalance handling
 - Web: React, Vite, Tailwind CSS, Netlify, HTML, JavaScript, WordPress
@@ -171,6 +171,16 @@ release pipeline: GitHub repository, versioned releases via GitHub CLI, download
 desktop package, and live production deployment.
 Live: craftpath.onrender.com
 GitHub: github.com/brandonduplantier-juice/CraftPath
+
+Job Market Data Pipeline (career-ops)
+Independent Python Project | 2025 - Present
+
+Built a Python pipeline that sources job postings from public job-board APIs (Greenhouse,
+Lever), deduplicates against previously seen roles, filters for remote positions matching
+target criteria, and scores each posting against a defined skill and role profile to
+produce a ranked daily queue for review. Runs automatically on a schedule via Windows Task
+Scheduler. Demonstrates third-party API integration, data sourcing, data cleaning and
+deduplication, automated scoring, and workflow automation.
 
 Medication Adherence and Organ Rejection Risk Scoring System
 Independent Biomedical Project | Python | 2024 - Present
