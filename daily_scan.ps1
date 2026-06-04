@@ -1,10 +1,13 @@
-Set-Location C:\Users\brand\career-ops
+﻿Set-Location C:\Users\brand\career-ops
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm"
 Add-Content -Path "data\scan_log.txt" -Value "`n=== Scan started: $timestamp ==="
 
 claude --dangerously-skip-permissions -p "Run a job scan. Pull 25 remote data analyst roles. Score each A-F based on my profile below. Save results to data/daily_queue.md sorted by score. Flag all A and B scores as PRIORITY at the top. Include URL, company, role, pay if listed, score, and one-line gap summary for each.
 
 MY CURRENT SKILLS - NO LONGER GAPS:
+- Microsoft Excel: native .xlsx, pivot-style summary tables, COUNTIFS, AVERAGEIF, INDEX/MATCH, linked KPI dashboard
+- R: logistic regression (glm), odds ratios with confidence intervals, ROC/AUC
+- Snowflake: cloud data warehouse, loaded via Python connector, SQL with IFF, QUALIFY, RATIO_TO_REPORT, window functions
 - Power BI: 2 portfolio projects with DAX, CALCULATE, RANKX, slicers, KPI cards
 - Tableau: live public dashboard on Tableau Public with choropleth map, trend line
 - Looker Studio: live dashboard connected to Google Sheets
