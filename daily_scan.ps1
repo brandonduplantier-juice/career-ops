@@ -1,8 +1,27 @@
-﻿Set-Location C:\Users\brand\career-ops
+Set-Location C:\Users\brand\career-ops
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm"
 Add-Content -Path "data\scan_log.txt" -Value "`n=== Scan started: $timestamp ==="
 
-claude --dangerously-skip-permissions -p "Run a job scan. Pull 25 remote data analyst roles. Score each A-F based on my profile below. Save results to data/daily_queue.md sorted by score. Flag all A and B scores as PRIORITY at the top. Include URL, company, role, pay if listed, score, and one-line gap summary for each.
+$prompt = @'
+Run a job scan for remote data analyst roles.
+
+ACCURACY RULES (most important):
+- Use web search to find real, currently-open job postings. Do NOT invent or guess companies, roles, pay, or URLs.
+- Every entry MUST come from an actual search result and have a working URL to the live posting.
+- Only include roles posted within the last 14 days. If a posting has no date, include it only if it is clearly still open.
+- Aim for 25 roles, but if you cannot verify 25 real ones, return fewer and state how many you actually found. Never pad the list with fabricated entries.
+
+DEDUP:
+- Read data/seen_jobs.json. Skip any role already listed there.
+- After producing the queue, append the new roles (company + role + URL) to data/seen_jobs.json.
+
+OUTPUT:
+- Save results to data/daily_queue.md sorted by score (best first).
+- At the very top, write a summary line: scan date, total real roles found, count of each grade (A/B/C/D/F), and how many were new vs already seen.
+- Flag all A and B scores as PRIORITY in a section at the top.
+- For each role include: URL, company, role title, pay if listed, score, and a one-line gap summary.
+
+Score each role A-F based on the profile below.
 
 MY CURRENT SKILLS - NO LONGER GAPS:
 - Microsoft Excel: native .xlsx, pivot-style summary tables, COUNTIFS, AVERAGEIF, INDEX/MATCH, linked KPI dashboard
@@ -34,7 +53,8 @@ SCORING RULES:
 - Pay ceiling $49,000/year until December 2027 graduation. Flag OVER_CEILING for awareness.
 - Roles requiring Power BI OR Tableau OR Looker = REALISTIC_FIT if other criteria match.
 - Roles requiring SQL + Python = REALISTIC_FIT.
-- Roles requiring Snowflake, dbt, BigQuery as HARD requirements = flag as gap but still score.
+- Roles requiring Snowflake, R, or Excel = REALISTIC_FIT (these are current skills, not gaps).
+- Roles requiring dbt or BigQuery as HARD requirements = flag as gap but still score.
 - 0-2 years experience required = REALISTIC_FIT.
 - Durability: ongoing roles get +0.4, temporary/summer only get -0.5.
 - Post-graduation full-time conversion language = +0.4 bonus.
@@ -45,6 +65,9 @@ SCORING RULES:
 SEARCH TARGETS:
 Health systems, CROs, health tech startups, payer/PBM companies, government health agencies, academic medical centers, population health companies, revenue cycle companies, clinical analytics firms.
 
-Remote required. Do not include on-site roles." >> data\scan_log.txt 2>&1
+Remote required. Do not include on-site roles.
+'@
+
+claude --dangerously-skip-permissions -p $prompt >> data\scan_log.txt 2>&1
 
 Add-Content -Path "data\scan_log.txt" -Value "=== Scan complete: $(Get-Date -Format 'yyyy-MM-dd HH:mm') ==="
