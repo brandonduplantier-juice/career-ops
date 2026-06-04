@@ -39,6 +39,19 @@ Certifications
 
 Projects and Experience
 
+Hospital Readmission Logistic Regression (R)
+Independent Healthcare Analytics Project | R | June 2026
+
+Built a binomial logistic regression in R (glm) on the same 300-patient readmission
+dataset used for the Random Forest model, as an interpretable complement quantifying how
+each factor changes the odds of 30-day readmission. Relative to Hip/Knee Replacement
+patients, Heart Failure carried roughly 20x the odds of readmission (OR 19.7, 95% CI
+5.3-72.9, p<0.001); COPD, Sepsis, and Pneumonia were all 6-10x and significant. Scheduled
+followup trended protective (OR 0.58) but was not significant after adjusting for diagnosis.
+Reported odds ratios with 95% confidence intervals and ROC AUC of 0.714 (in-sample).
+Excluded department to avoid collinearity with diagnosis.
+Link: github.com/brandonduplantier-juice/python-portfolio/tree/main/R-Readmission-Logistic-Regression
+
 Hospital Readmission Prediction Model
 Independent ML Project | Python, scikit-learn | May 2026
 
@@ -106,8 +119,8 @@ Created 3 pivot-style summary tables (by diagnosis, insurance type, and discharg
 disposition) using COUNTIFS and AVERAGEIF, plus 10 key-metric formulas including an
 INDEX/MATCH lookup that dynamically returns the highest-risk diagnosis. A Dashboard
 tab links live to the formula sheet via cross-sheet references with a readmission-rate
-bar chart. Key finding: patients without a scheduled followup readmit at 30.59% vs
-24.00% overall — a 6.6-point gap with direct clinical intervention implications.
+bar chart. Key finding: Key finding: patients without a scheduled followup readmit at 30.59% vs
+24.00% overall, a 6.6 point gap with direct clinical intervention implications.
 Link: github.com/brandonduplantier-juice/python-portfolio/tree/main/Excel-Readmission-Analysis
 
 Hospital 30-Day Readmission Analysis
