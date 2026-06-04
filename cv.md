@@ -98,6 +98,18 @@ Techniques: CTEs, window functions, conditional aggregation, subqueries,
 date arithmetic, multi-table JOINs.
 github.com/brandonduplantier-juice/python-portfolio/tree/main/SQL-Analytics-Portfolio
 
+Hospital Readmission Excel Analysis
+Independent Healthcare Analytics Project | Microsoft Excel | June 2026
+
+Built a native Excel workbook analyzing a 300-patient hospital readmission dataset.
+Created 3 pivot-style summary tables (by diagnosis, insurance type, and discharge
+disposition) using COUNTIFS and AVERAGEIF, plus 10 key-metric formulas including an
+INDEX/MATCH lookup that dynamically returns the highest-risk diagnosis. A Dashboard
+tab links live to the formula sheet via cross-sheet references with a readmission-rate
+bar chart. Key finding: patients without a scheduled followup readmit at 30.59% vs
+24.00% overall — a 6.6-point gap with direct clinical intervention implications.
+Link: github.com/brandonduplantier-juice/python-portfolio/tree/main/Excel-Readmission-Analysis
+
 Hospital 30-Day Readmission Analysis
 Independent Healthcare Analytics Project | Power BI, DAX | May 2026
 
