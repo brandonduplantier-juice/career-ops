@@ -172,6 +172,24 @@ search_queries:
     query: 'site:usajobs.gov "data analyst" OR "health informatics" OR "public health analyst" remote OR telework GS-5 OR GS-7 OR GS-9 OR Pathways'
     enabled: true
 
+  # -- [SECONDARY] Longevity / Bioinformatics / Biotech research track --
+  # The agent treats [SECONDARY] sources as a separate, capped track (see modes/_profile.md).
+  - name: '[SECONDARY] Greenhouse - Bioinformatics / Comp Bio (remote)'
+    query: 'site:boards.greenhouse.io OR site:job-boards.greenhouse.io "bioinformatics" OR "computational biology" remote intern OR junior OR "research associate"'
+    enabled: true
+  - name: '[SECONDARY] Ashby / Lever - Longevity / Drug Discovery (remote)'
+    query: 'site:jobs.ashbyhq.com OR site:jobs.lever.co "longevity" OR "aging" OR "drug discovery" OR "computational biology" remote intern OR junior'
+    enabled: true
+  - name: '[SECONDARY] LinkedIn - Bioinformatics / Computational Biology (remote)'
+    query: '"bioinformatics" OR "computational biology" remote intern OR junior OR "research associate" site:linkedin.com/jobs'
+    enabled: true
+  - name: '[SECONDARY] LinkedIn - Longevity / Aging Research (remote)'
+    query: '"longevity" OR "aging research" OR "geroscience" remote intern OR junior site:linkedin.com/jobs'
+    enabled: true
+  - name: '[SECONDARY] Computer Vision - Life Sciences (remote)'
+    query: '"computer vision" "life sciences" OR "pathology" OR "biological imaging" remote intern OR junior site:linkedin.com/jobs'
+    enabled: true
+
 # -- Tracked companies --
 # Healthcare analytics, payer/PBM, health tech, CRO, and broad remote-data employers
 # that post entry/junior/associate remote analyst roles. Checked via Playwright or API.
@@ -308,4 +326,49 @@ tracked_companies:
     scan_method: websearch
     scan_query: 'site:usajobs.gov CDC "data analyst" OR "public health analyst" OR "health informatics" remote OR telework GS-5 OR GS-7 OR GS-9 OR Pathways'
     notes: "CDC remote/telework analyst roles. GS-5/7/9 entry level. Federal benefits."
+    enabled: true
+
+  # -- [SECONDARY] Longevity / Bioinformatics / Biotech research employers --
+  # Capped secondary track. Remote-only still applies.
+  - name: '[SECONDARY] Calico (Alphabet)'
+    careers_url: https://www.calicolabs.com/careers
+    scan_method: websearch
+    scan_query: 'site:calicolabs.com/careers OR "Calico Labs" "bioinformatics" OR "computational" OR "data" remote intern OR junior'
+    notes: "Alphabet longevity research lab. SECONDARY track."
+    enabled: true
+  - name: '[SECONDARY] Altos Labs'
+    careers_url: https://altoslabs.com/careers
+    scan_method: websearch
+    scan_query: 'site:altoslabs.com/careers "bioinformatics" OR "computational" OR "data" remote intern OR junior'
+    notes: "Rejuvenation/longevity research. SECONDARY track."
+    enabled: true
+  - name: '[SECONDARY] Retro Biosciences'
+    careers_url: https://job-boards.greenhouse.io/retrobiosciences
+    api: https://boards-api.greenhouse.io/v1/boards/retrobiosciences/jobs
+    notes: "Longevity startup. SECONDARY track."
+    enabled: true
+  - name: '[SECONDARY] BioAge Labs'
+    careers_url: https://job-boards.greenhouse.io/bioagelabs
+    api: https://boards-api.greenhouse.io/v1/boards/bioagelabs/jobs
+    notes: "Aging biomarkers + drug discovery. SECONDARY track."
+    enabled: true
+  - name: '[SECONDARY] NewLimit'
+    careers_url: https://www.newlimit.com/careers
+    scan_method: websearch
+    scan_query: '"NewLimit" careers "bioinformatics" OR "computational" OR "machine learning" OR "data" remote'
+    notes: "Epigenetic reprogramming for longevity. SECONDARY track."
+    enabled: true
+  - name: '[SECONDARY] Recursion Pharmaceuticals'
+    careers_url: https://job-boards.greenhouse.io/recursionpharmaceuticals
+    api: https://boards-api.greenhouse.io/v1/boards/recursionpharmaceuticals/jobs
+    notes: "AI-first drug discovery. SECONDARY track."
+    enabled: true
+  - name: '[SECONDARY] Insitro'
+    careers_url: https://jobs.lever.co/insitro
+    notes: "ML for drug discovery. SECONDARY track."
+    enabled: true
+  - name: '[SECONDARY] Broad Institute'
+    careers_url: https://job-boards.greenhouse.io/broadinstitute
+    api: https://boards-api.greenhouse.io/v1/boards/broadinstitute/jobs
+    notes: "Genomics/bioinformatics research institute. Posts student roles. SECONDARY track."
     enabled: true

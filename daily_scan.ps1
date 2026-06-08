@@ -89,12 +89,18 @@ SOURCES:
 - Government: USAJobs.
 - Do not rely on Indeed, SimplyHired, or Wellfound (blocked), or Arbeitnow (non-US).
 
+SECONDARY TRACK - Longevity / Research (run alongside the analyst search):
+- Also find remote longevity, bioinformatics, computational biology, and biotech research roles (entry / junior / research associate / intern with conversion or at high-signal labs). Remote-only still applies.
+- Cap this at about 5 roles. It must NOT crowd out the primary analyst roles.
+- Rationale: Brandon's long-term goal is founding a biomedical longevity company, so keep a real line in the water here.
+
 OUTPUT - save to data/daily_queue.md:
 - First line: summary - scan date, total real roles found, count of each grade (A/B/C/D/F), and how many were new vs already seen.
 - PRIORITY section at the top: all A and B roles.
 - Then a ranked table sorted by score, columns: Rank | Score | Company | Role | URL | Pay | Remote | Employer Type | Duration | Screen | Warm Path | Flags | Gap.
 - Screen column: RESUME | ASSESSMENT | DIRECT. Warm Path column: a concrete referral/contact step, or "Cold: no contact found".
 - Main table includes B and above, then C below. Exclude anything already applied to or in data/seen_jobs.json.
+- After the primary analyst table, add a separate "SECONDARY: Longevity / Research" section (same columns, capped at ~5 roles).
 - List GIG roles separately at the very bottom.
 '@
 

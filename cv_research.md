@@ -4,16 +4,15 @@ linkedin.com/in/charles-brandon-duplantier
 brandonpython.netlify.app | github.com/brandonduplantier-juice
 
 Summary
-Data analyst who builds AI-driven analytics automation. Delivers BI dashboards (Power BI,
-Tableau, Looker Studio), SQL and Snowflake pipelines, and Python/R statistical models,
-plus production automation: an automated job-market data pipeline, a deployed Flask web
-application, and Claude-API workflows. Bioinformatics student at the University of Arizona
-(B.S., graduating December 2027) and a returning adult student with 15+ years of
-professional experience across healthcare data, engineering, and technical operations.
-Brings 15+ years navigating prior authorization and healthcare insurance systems firsthand,
-a domain edge for healthcare and revenue-cycle analytics that automated screening cannot
-replicate. Long-term goal: founding a company that advances human longevity through
-computational biology. Works independently and delivers production-quality output. Available immediately.
+Bioinformatics student and computational biologist building toward a career in longevity and
+aging research. Has shipped production machine learning on biological data: a YOLO computer-vision
+pipeline (drone_fish_counts) for drone-based salmon identification, contracted for Nalaquq LLC and
+deployed to non-technical Yupik field researchers. Pairs that with strong data and analytics depth:
+Python and R statistical modeling, SQL and Snowflake pipelines, and BI dashboards (Power BI, Tableau,
+Looker Studio). Returning adult student at the University of Arizona (B.S. Bioinformatics, graduating
+December 2027) with 15+ years of professional experience. Long-term goal: founding a company that
+advances human longevity through computational biology. Works independently and delivers
+production-quality output. Available immediately.
 
 Technical Skills
 - Python: Pandas, NumPy, SciPy, Matplotlib, Plotly, Flask, PyInstaller, Jupyter

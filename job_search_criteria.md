@@ -185,3 +185,13 @@ tuned to favor reachable roles and warm paths over raw volume:
   -0.3 assessment-only with no warm path (flag, do not exclude).
 - **Range over volume:** apply across roles, industries, and geographies; be open to
   contract and adjacent roles; lead every touchpoint with the portfolio.
+
+## Two-track search (primary analyst + secondary longevity)
+
+- **Primary track:** remote data/BI/healthcare analyst roles (the main queue).
+- **Secondary track:** remote longevity, bioinformatics, computational biology, and biotech
+  research roles, capped at ~5 per scan, in a separate section. Brandon's long-term goal is
+  founding a biomedical longevity company, so this keeps a real line in the water without
+  letting it crowd out the analyst roles that are the near-term income.
+- **CV variants:** `cv.md` (analyst-led, with a longevity goal line) for analyst roles;
+  `cv_research.md` (research/longevity-led) for the secondary track.

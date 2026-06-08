@@ -201,6 +201,21 @@ a new evaluation. The leverage is getting in front of a human and applying with 
 
 Prioritize roles with a warm path and a non-assessment screen. These are where applications actually convert.
 
+## Secondary Track: Longevity / Research
+
+Brandon's long-term goal is founding a biomedical longevity company. Alongside the primary
+analyst search, run a SECONDARY track for remote longevity, bioinformatics, computational
+biology, and biotech research roles (the [SECONDARY] sources in portals.yml).
+
+- Remote-only still applies (no hybrid, no on-site).
+- Acceptable levels: entry, junior, research associate/assistant, and internships -- but only
+  internships with conversion/return-offer/long-term language or at high-signal labs.
+- Cap the secondary track at about 5 roles per scan. It must NOT crowd out the primary analyst
+  roles; analyst roles remain the main queue.
+- Score and flag them with the same rules (remote, durability, screen, warm path).
+- Output them in a clearly separate "SECONDARY: Longevity / Research" section, below the primary
+  analyst table and above the GIG section.
+
 ## Daily Queue Output
 
 After each scan, save the scored roles to `data/daily_queue.md` in this format. Plain text only -- no emoji.
@@ -223,5 +238,6 @@ Then a ranked table sorted by score:
 - Warm Path column: a concrete referral/contact next step, or "Cold: no contact found".
 - Flags column: BENEFITS, STABLE, etc. as applicable.
 - Include B and above in the main table, then C below. Exclude anything already in data/seen_jobs.json.
+- After the primary analyst table, add a separate "## SECONDARY: Longevity / Research" section (same columns, capped at ~5 roles) for the [SECONDARY] track.
 - List GIG roles in a separate section at the very bottom.
 - No pay ceiling and no OVER_CEILING logic. Never drop or down-rank a role for salary.
