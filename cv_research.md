@@ -189,9 +189,8 @@ Built a patient-level clinical pipeline ingesting dose records and computing
 per-patient adherence rates, missed dose counts, late dose counts, and timing errors.
 Designed a weighted risk formula classifying patients into low, moderate, and high
 organ rejection risk. Generated automated clinical recommendations per category.
-Built to be extensible to real EHR data formats. Informed by lived experience as a
-two-time kidney transplant recipient with direct knowledge of post-transplant
-medication compliance requirements.
+Built to be extensible to real EHR data formats. Informed by 15+ years navigating
+healthcare and prior-authorization systems firsthand.
 
 Multi-Target CRISPR Platform for Longevity (Research and Design)
 Self-Employed | Remote | December 2024 - Present
@@ -290,16 +289,6 @@ Supported prototyping of robotic arms used for hazardous material handling.
 Collaborated with engineers on mechanical calibration, testing, and iterative design.
 First exposure to robotics and engineering in a health-adjacent context.
 
-Personal Health Transformation
-2009 - 2018
-
-Underwent two kidney transplants (November 2009 and December 2017) and over a year
-of dialysis (August 2016 through December 2017). Used this period for deep
-self-education in systems thinking, biology, and biomedical science. Emerged with
-a clear mission to extend human healthspan and build technologies that treat disease
-at its root. This experience directly informs the organ rejection risk scoring system
-and the CRISPR longevity research.
-
 Education
 B.S. In Progress, Bioinformatics
 University of Arizona | Junior | Expected December 2027
@@ -308,8 +297,7 @@ Research Analysis, Genomics, Computational Biology, Systems Biology
 
 Research Interests
 Human longevity and lifespan extension | CRISPR and gene editing for healthspan |
-Computational genomics | Clinical data systems | Organ transplant and immunosuppression
-data | Aging biology | Post-transplant medication adherence modeling |
+Computational genomics | Clinical data systems | Aging biology |
 Pathology AI and medical imaging | Agricultural biotech and controlled environment
 agriculture
 
