@@ -67,6 +67,16 @@ SCORING (A-F):
 - Penalty: temporary or summer-only -0.5.
 - Flag STABLE for companies with 200+ employees and real revenue.
 
+REACHABILITY (counters algorithmic-monoculture screening):
+- +0.3 if the employer is small or mid-sized (roughly under 200 employees) - more likely a human reads the application.
+- +0.3 if there is a direct-apply path, a named hiring contact, or a network/alumni path (see WARM PATH below).
+- -0.3 if the only path is a gamified or AI video assessment (HireVue, Pymetrics, Plum, Harver, Criteria, Koru) AND no warm path exists. Do not exclude these; just lower priority.
+- Prioritize roles with a warm path and a non-assessment screen.
+
+SCREEN AND WARM PATH (do this for every A and B role):
+- SCREEN: identify the application method from the apply URL and JD. RESUME = greenhouse, lever, ashby, workday, smartrecruiters, workable, icims, taleo. ASSESSMENT = pymetrics, hirevue, plum, harver, criteria, koru, or JD mentions of games / assessment / on-demand video interview. DIRECT = email a person or a small-company form with no ATS.
+- WARM PATH: using web search and browser tools, find a referral route - a named hiring manager or team lead, a University of Arizona alum at the company, or a plausible connection. Output a concrete next step (e.g., "Referral: msg J. Smith, Analytics Lead, UA alum") or "Cold: no contact found". Never invent names; if none found, say so.
+
 SCREEN OUT / SEPARATE:
 - Skip hidden-employer staffing aggregators unless the real employer is identifiable: Jobgether, Calculated Hire, Jobs via Dice, RemoteHunter, generic recruiting LLCs.
 - Skip title traps without a research context: Labeling, Annotation, Verification, Migration, data entry, encounter-data entry.
@@ -82,7 +92,8 @@ SOURCES:
 OUTPUT - save to data/daily_queue.md:
 - First line: summary - scan date, total real roles found, count of each grade (A/B/C/D/F), and how many were new vs already seen.
 - PRIORITY section at the top: all A and B roles.
-- Then a ranked table sorted by score, columns: Rank | Score | Company | Role | URL | Pay | Remote | Employer Type | Duration | Flags | Gap.
+- Then a ranked table sorted by score, columns: Rank | Score | Company | Role | URL | Pay | Remote | Employer Type | Duration | Screen | Warm Path | Flags | Gap.
+- Screen column: RESUME | ASSESSMENT | DIRECT. Warm Path column: a concrete referral/contact step, or "Cold: no contact found".
 - Main table includes B and above, then C below. Exclude anything already applied to or in data/seen_jobs.json.
 - List GIG roles separately at the very bottom.
 '@

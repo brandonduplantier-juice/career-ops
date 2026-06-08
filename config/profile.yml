@@ -53,13 +53,13 @@ work_types:
   - "Contract / freelance (remote)"
 
 narrative:
-  headline: "Data analyst (healthcare and BI) with a bioinformatics background and production data tooling"
-  exit_story: "Returning adult student (B.S. Bioinformatics, University of Arizona, graduating December 2027) with 15+ years of professional experience. Builds end-to-end analytics: Power BI, Tableau, and Looker Studio dashboards; SQL and Snowflake pipelines; Python and R statistical models. Brings 15+ years of firsthand experience navigating prior authorization and healthcare insurance systems, a rare domain edge for healthcare and revenue-cycle analytics."
+  headline: "Data analyst who builds AI-driven analytics automation, with a healthcare and prior-auth domain edge"
+  exit_story: "Returning adult student (B.S. Bioinformatics, University of Arizona, graduating December 2027) with 15+ years of professional experience. Builds analyst work and the automation behind it: Power BI, Tableau, and Looker dashboards; SQL and Snowflake pipelines; Python and R models; plus production automation including an automated job-market data pipeline, a deployed Flask app, and Claude-API workflows. Brings 15+ years navigating prior authorization and healthcare insurance systems firsthand, a domain edge for healthcare and revenue-cycle analytics that automated screening cannot replicate."
   superpowers:
+    - "Builds AI-driven automation for analyst work (data pipelines, Claude-API workflows, deployed apps)"
     - "Healthcare and BI analytics: Power BI, Tableau, Looker Studio, SQL, Snowflake"
     - "Statistical modeling in Python and R (logistic regression, Random Forest, ROC/AUC)"
     - "15+ years navigating prior authorization and healthcare insurance systems firsthand"
-    - "Production tool delivery (Flask, deployed apps) and independent remote execution"
   proof_points:
     - name: "Healthcare Analytics Portfolio"
       url: "https://brandonpython.netlify.app"

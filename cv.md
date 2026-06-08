@@ -4,15 +4,15 @@ linkedin.com/in/charles-brandon-duplantier
 brandonpython.netlify.app | github.com/brandonduplantier-juice
 
 Summary
-Bioinformatics student and Python developer with hands-on experience building clinical
-data pipelines, biomedical risk scoring systems, and automated data workflows. Junior
-at the University of Arizona pursuing a B.S. in Bioinformatics, graduating December
-2027. Returning adult student with 15+ years of professional experience spanning
-pathology assistance, engineering, healthcare data analysis, and technical operations.
-Personal connection to biomedical research: two-time kidney transplant recipient whose
-long-term goal is to found a company advancing human longevity through gene editing
-and computational biology. Works independently without supervision and delivers
-production-quality output. Available immediately.
+Data analyst who builds AI-driven analytics automation. Delivers BI dashboards (Power BI,
+Tableau, Looker Studio), SQL and Snowflake pipelines, and Python/R statistical models,
+plus production automation: an automated job-market data pipeline, a deployed Flask web
+application, and Claude-API workflows. Bioinformatics student at the University of Arizona
+(B.S., graduating December 2027) and a returning adult student with 15+ years of
+professional experience across healthcare data, engineering, and technical operations.
+Brings 15+ years navigating prior authorization and healthcare insurance systems firsthand,
+a domain edge for healthcare and revenue-cycle analytics that automated screening cannot
+replicate. Works independently and delivers production-quality output. Available immediately.
 
 Technical Skills
 - Python: Pandas, NumPy, SciPy, Matplotlib, Plotly, Flask, PyInstaller, Jupyter

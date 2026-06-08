@@ -49,11 +49,13 @@ differentiator, not a liability.
 
 ## Your Cross-cutting Advantage
 
-**"Analyst tooling plus inside-the-system healthcare domain knowledge."**
+**"Builds the AI automation that does analyst work, plus a healthcare domain a model cannot replicate."**
 
-Most analyst candidates have similar tools (SQL, Power BI, Python) but no firsthand knowledge of how prior
-authorization and healthcare insurance actually work. Brandon has 15+ years of that lived experience, which is
-a real edge on healthcare, revenue-cycle, and prior-auth analytics roles.
+Entry-level analyst hiring is being squeezed because employers anticipate AI handling junior analyst tasks.
+Brandon is on the right side of that curve: he builds the automation himself (an automated job-market data
+pipeline, a deployed Flask app, Claude-API workflows) AND has 15+ years of firsthand experience navigating
+prior authorization and healthcare insurance systems. The combination is hard to automate away and hard for
+other candidates to match, especially on healthcare, revenue-cycle, and prior-auth analytics roles.
 
 ## Your Portfolio / Demo
 
@@ -119,6 +121,12 @@ When evaluating roles:
 - Penalty: temporary or summer-only -0.5.
 - No salary-based scoring of any kind.
 
+Reachability re-weight (counters algorithmic-monoculture screening -- see Screening and Warm Path below):
+- +0.3 if the employer is small or mid-sized (roughly under 200 employees): less likely to run heavy vendor screening, more likely a human reads the application.
+- +0.3 if there is a direct-apply path or a named hiring contact, OR a network/alumni path is found (see WARM_PATH).
+- -0.3 if the only application path is a gamified or video AI assessment (HireVue, Pymetrics, Plum, Harver, Criteria, Koru) AND no warm path exists -- flag SCREEN=ASSESSMENT. Do not exclude; assessment roles with a warm path keep full score.
+- Do not re-grind identical assessment pipelines: if the same vendor assessment already appears for a prior applied role, note it and prioritize a warm path over a fresh cold application.
+
 ### Durability Filter (apply after the remote filter)
 
 Brandon prefers roles that can last through December 2027 and ideally convert to full-time with benefits.
@@ -171,6 +179,28 @@ Handle GIG roles:
 3. Hybrid -> DISCARD: HYBRID (do not include).
 4. Remote not mentioned -> REMOTE_UNCLEAR, include with a cap of B until confirmed.
 
+## Screening and Warm Path (apply to every A and B role)
+
+Research on algorithmic monoculture in hiring (Bommasani et al., Stanford, 2026) shows that many employers
+screen with the same few vendors, so submitting more applications through identical pipelines rarely produces
+a new evaluation. The leverage is getting in front of a human and applying with range. For every A and B role:
+
+1. SCREEN -- identify the application/screening method from the apply URL and job description:
+   - RESUME (resume-parse ATS): greenhouse.io, lever.co, ashbyhq.com, myworkdayjobs.com, smartrecruiters,
+     workable, icims, taleo.
+   - ASSESSMENT (gamified or AI video screen): pymetrics, hirevue, plum, harver, criteria, koru, or JD
+     language like "games", "assessment", "on-demand video interview".
+   - DIRECT (email a person, or a small-company form with no ATS).
+   Record the value in the SCREEN column.
+
+2. WARM_PATH -- find a way to route around the screen. Using web search and the available browser tools,
+   look for: a named hiring manager, recruiter, or team lead for the role; a University of Arizona alum at the
+   company; or a plausible 1st/2nd-degree connection. Output a short, concrete next step in the WARM_PATH
+   column, for example "Referral: msg J. Smith, Analytics Lead (UA alum)" or "Cold: no contact found, apply direct".
+   If no contact is found, say so plainly -- do not invent names.
+
+Prioritize roles with a warm path and a non-assessment screen. These are where applications actually convert.
+
 ## Daily Queue Output
 
 After each scan, save the scored roles to `data/daily_queue.md` in this format. Plain text only -- no emoji.
@@ -182,13 +212,15 @@ PRIORITY section: all A and B roles.
 Then a ranked table sorted by score:
 
 ```markdown
-| Rank | Score | Company | Role | URL | Pay | Remote | Employer | Duration | Flags | Gap |
-|------|-------|---------|------|-----|-----|--------|----------|----------|-------|-----|
+| Rank | Score | Company | Role | URL | Pay | Remote | Employer | Duration | Screen | Warm Path | Flags | Gap |
+|------|-------|---------|------|-----|-----|--------|----------|----------|--------|-----------|-------|-----|
 ```
 
 - Remote column: Remote | REMOTE_UNCLEAR (hybrid/on-site are discarded, not listed).
 - Employer column: STABLE | STARTUP | ACADEMIC | GOV.
 - Duration column: ONGOING | TEMP/CONVERSION | TEMPORARY.
+- Screen column: RESUME | ASSESSMENT | DIRECT (see Screening and Warm Path).
+- Warm Path column: a concrete referral/contact next step, or "Cold: no contact found".
 - Flags column: BENEFITS, STABLE, etc. as applicable.
 - Include B and above in the main table, then C below. Exclude anything already in data/seen_jobs.json.
 - List GIG roles in a separate section at the very bottom.
