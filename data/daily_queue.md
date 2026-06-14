@@ -1,3 +1,77 @@
+## Scan 2026-06-14 (AI review: not run (deterministic only))
+
+### Verified Roles (score >= 3.5)
+
+| # | Score | Reason | Company | Role | Pay | Location | Size | Screen | Apply | Warm Path |
+|---|-------|--------|---------|------|-----|----------|------|--------|-------|-----------|
+| 1 | 4.1 | Junior/entry title (+1.0); SQL/PYTHON/EXCEL skills (+0.3); Healthcare/domain match (+0.5); Small employer ~300 (+0.3) | Capital Rx | Technical QA Analyst II | $75,200 | Remote, US | ~300 | RESUME | [Apply](https://job-boards.greenhouse.io/capitalrx/jobs/5100517008) | Cold: no contact found |
+| 2 | 4.1 | Junior/entry title (+1.0); SQL/PYTHON/SNOWFLAKE skills (+0.3); Healthcare/domain match (+0.5); Small employer ~200 (+0.3) | Garner Health | Security Analyst II | $117,000 - $130,000 | Remote, US | ~200 | RESUME | [Apply](https://job-boards.greenhouse.io/garnerhealth/jobs/5821319004) | Cold: no contact found |
+| 3 | 3.9 | Entry-level JD language (+1.0); SQL skills (+0.1); Healthcare/domain match (+0.5); Small employer ~100 (+0.3) | Impiricus | QA Analyst | $85,000-$95,000 | Remote, US | ~100 | RESUME | [Apply](https://job-boards.greenhouse.io/impiricus/jobs/5148695008) | Cold: no contact found |
+| 4 | 3.8 | Junior/entry title (+1.0); SQL/PYTHON/EXCEL skills (+0.3); Healthcare/domain match (+0.5) | Newsela | Educational Data Analyst (NEW) | $110,000 | Remote, US | not listed | RESUME | [Apply](https://job-boards.greenhouse.io/newsela/jobs/7899338) | Cold: no contact found |
+| 5 | 3.7 | Junior/entry title (+1.0); SQL/PYTHON skills (+0.2); Healthcare/domain match (+0.5) | Alpaca | Data Analyst (NEW) | not listed | Remote, US | not listed | RESUME | [Apply](https://job-boards.greenhouse.io/alpaca/jobs/6020810004) | Cold: no contact found |
+| 6 | 3.7 | Junior/entry title (+1.0); SQL/SNOWFLAKE skills (+0.2); Healthcare/domain match (+0.5) | Affirm | Analyst II, Full Stack (Core Analytics) | $145,000 - $205,000 | Remote, US | ~2000 | RESUME | [Apply](https://job-boards.greenhouse.io/affirm/jobs/7726627003) | Cold: no contact found |
+| 7 | 3.7 | Junior/entry title (+1.0); SQL/PYTHON skills (+0.2); Healthcare/domain match (+0.5) | Affirm | Analyst II, Full Stack (Credit Analytics) | $145,000 - $205,000 | Remote, US | ~2000 | RESUME | [Apply](https://job-boards.greenhouse.io/affirm/jobs/7764035003) | Cold: no contact found |
+| 8 | 3.6 | Entry-level JD language (+1.0); EXCEL skills (+0.1); Healthcare/domain match (+0.5) | Addepar | Compliance Analyst (NEW) | $69,000 - $107,000 | Remote, US | not listed | RESUME | [Apply](https://job-boards.greenhouse.io/addepar1/jobs/8540339002) | Cold: no contact found |
+| 9 | 3.6 | Entry-level JD language (+1.0); SQL skills (+0.1); Healthcare/domain match (+0.5) | PointClickCare | Solutions Analyst (TAM, Customer Support) (NEW) | not listed | Remote, US | not listed | RESUME | [Apply](https://jobs.lever.co/pointclickcare/aa350ca4-59d6-4ffd-aa7f-00dceb82c3a6) | Cold: no contact found |
+
+### Stretch / Not-a-fit (score 2.5-3.4, for awareness)
+
+| # | Score | Reason | Company | Role | Apply |
+|---|-------|--------|---------|------|-------|
+| 10 | 3.4 | Junior/entry title (+1.0); SQL skills (+0.1); Healthcare/domain match (+0.5); Location unverified - confirm remote before applying (capped 3.4) | V Group Inc. | Healthcare Data Analyst (NEW) | [Apply](https://www.adzuna.com/land/ad/5763607669?se=JtgxaAxo8RG5GpwkRXC5CA&utm_medium=api&utm_source=43aa6d53&v=EC0A69FC54DAABFFEB86E942E00FFB51D1FDAEC6) |
+| 11 | 3.4 | Junior/entry title (+1.0); SQL/EXCEL skills (+0.2); Healthcare/domain match (+0.5); Location unverified - confirm remote before applying (capped 3.4) | Stellar Professionals LLC | Healthcare Data Analyst (NEW) | [Apply](https://www.adzuna.com/land/ad/5753366593?se=JtgxaAxo8RG5GpwkRXC5CA&utm_medium=api&utm_source=43aa6d53&v=4289564085A818CC6F6B5920AEF5742417D5452E) |
+| 12 | 3.4 | Junior/entry title (+1.0); SNOWFLAKE skills (+0.1); Healthcare/domain match (+0.5); Location unverified - confirm remote before applying (capped 3.4) | Global Soft Systems | Business Data Analyst (NEW) | [Apply](https://www.adzuna.com/land/ad/5750803107?se=oBGhaAxo8RG0btGxqHH3qw&utm_medium=api&utm_source=43aa6d53&v=EFF40E367147256605335C512DADDFA28546CC7C) |
+| 13 | 3.4 | Junior/entry title (+1.0); Entry-level JD language (+1.0); Location unverified - confirm remote before applying (capped 3.4) | Dhalite Inc. | Business Data Analyst (Junior) (NEW) | [Apply](https://www.adzuna.com/land/ad/5760104734?se=wloNaQxo8RG0btGxqHH3qw&utm_medium=api&utm_source=43aa6d53&v=12F5958C15C618D8DEF0097DAB30FF216F4B0BE2) |
+| 14 | 3.4 | Junior/entry title (+1.0); Healthcare/domain match (+0.5); Location unverified - confirm remote before applying (capped 3.4) | Johns Hopkins Medicine | Business Intelligence Analyst I (NEW) | [Apply](https://www.adzuna.com/details/5761995697?utm_medium=api&utm_source=43aa6d53) |
+| 15 | 3.4 | Junior/entry title (+1.0); Healthcare/domain match (+0.5); Location unverified - confirm remote before applying (capped 3.4) | Children's Hospital Association | Healthcare Data Analyst (NEW) | [Apply](https://www.adzuna.com/details/5750235722?utm_medium=api&utm_source=43aa6d53) |
+| 16 | 3.4 | Junior/entry title (+1.0); Healthcare/domain match (+0.5); Location unverified - confirm remote before applying (capped 3.4) | Rural Health Group | Clinical Informatics Healthcare Data Analyst - Remote work optional (NEW) | [Apply](https://www.adzuna.com/details/5759445925?utm_medium=api&utm_source=43aa6d53) |
+| 17 | 3.4 | Junior/entry title (+1.0); Healthcare/domain match (+0.5); Location unverified - confirm remote before applying (capped 3.4) | Zeiders Enterprise | Data and Reporting Analyst (Remote) (NEW) | [Apply](https://www.adzuna.com/details/5763191136?utm_medium=api&utm_source=43aa6d53) |
+| 18 | 3.4 | Junior/entry title (+1.0); Healthcare/domain match (+0.5); Location unverified - confirm remote before applying (capped 3.4) | Zeiders Enterprises, Inc | Data and Reporting Analyst (Remote) (NEW) | [Apply](https://www.adzuna.com/details/5763080828?utm_medium=api&utm_source=43aa6d53) |
+| 19 | 3.4 | Junior/entry title (+1.0); Healthcare/domain match (+0.5); Location unverified - confirm remote before applying (capped 3.4) | AmeriHealth Caritas | Supervisor Operations Reporting Analyst CHC (NEW) | [Apply](https://www.adzuna.com/details/5763087131?utm_medium=api&utm_source=43aa6d53) |
+| 20 | 3.1 | Entry-level JD language (+1.0); EXCEL skills (+0.1) | Kalshi | Operations Risk Analyst (NEW) | [Apply](https://job-boards.greenhouse.io/kalshi/jobs/7530697003) |
+| 21 | 3.1 | Junior/entry title (+1.0); EXCEL skills (+0.1) | Sezzle | Marketing Analyst Intern (NEW) | [Apply](https://job-boards.greenhouse.io/sezzle/jobs/7711533003) |
+| 22 | 3.1 | Junior/entry title (+1.0); EXCEL skills (+0.1) | Sezzle | Marketing Communications Analyst Intern (NEW) | [Apply](https://job-boards.greenhouse.io/sezzle/jobs/7711400003) |
+| 23 | 3.1 | Junior/entry title (+1.0); PYTHON skills (+0.1) | PointClickCare | Canada- Security Analyst I (NEW) | [Apply](https://jobs.lever.co/pointclickcare/c68b5bd3-6dda-410c-bf32-28144f64289f) |
+| 24 | 3.1 | Junior/entry title (+1.0); POWER BI skills (+0.1) | Apolis | Testing Data Analyst (NEW) | [Apply](https://www.adzuna.com/land/ad/5760115099?se=JtgxaAxo8RG5GpwkRXC5CA&utm_medium=api&utm_source=43aa6d53&v=655EBB9764385D39BD7F519A735FAEBEB577C41E) |
+| 25 | 3.1 | Junior/entry title (+1.0); SQL skills (+0.1) | Judge Group, Inc. | BI Data Analyst (NEW) | [Apply](https://www.adzuna.com/land/ad/5759382192?se=oBGhaAxo8RG0btGxqHH3qw&utm_medium=api&utm_source=43aa6d53&v=4114FCB4162926FFA2D770124B882868F075BBEF) |
+| 26 | 3.1 | Junior/entry title (+1.0); POWER BI skills (+0.1) | Financial Additions, Inc. | Contract HRIS Reporting Analyst (NEW) | [Apply](https://www.adzuna.com/details/5760756249?utm_medium=api&utm_source=43aa6d53) |
+| 27 | 3.1 | SQL/PYTHON/EXCEL skills (+0.3); Healthcare/domain match (+0.5); Small employer ~300 (+0.3) | Capital Rx | Business Analyst | [Apply](https://job-boards.greenhouse.io/capitalrx/jobs/5218043008) |
+| 28 | 3.1 | Junior/entry title (+1.0); SQL/PYTHON/SNOWFLAKE skills (+0.3); Healthcare/domain match (+0.5); Small employer ~100 (+0.3); Degree required, no equivalent clause (-1.0) | Midi Health | Healthcare Data Analyst | [Apply](https://job-boards.greenhouse.io/midihealth/jobs/4685895005) |
+| 29 | 3.0 | Junior/entry title (+1.0) | TELUS Digital | Online Data Analyst United States Spanish speakers (NEW) | [Apply](https://remotive.com/remote-jobs/all-others/online-data-analyst-united-states-spanish-speakers-2090946) |
+| 30 | 3.0 | Junior/entry title (+1.0) | Tekcel8 | Data Analyst (NEW) | [Apply](https://www.adzuna.com/land/ad/5760119295?se=yDSnZwxo8RG0btGxqHH3qw&utm_medium=api&utm_source=43aa6d53&v=49A6447A9A4739F6D2713D7A5D4DA793FE839961) |
+| 31 | 3.0 | Junior/entry title (+1.0) | Mindlance | Data Analyst (NEW) | [Apply](https://www.adzuna.com/land/ad/5756446708?se=yDSnZwxo8RG0btGxqHH3qw&utm_medium=api&utm_source=43aa6d53&v=E0B6146BF3471CFB7EEA926E7B0A43B9320A6D9E) |
+| 32 | 3.0 | Junior/entry title (+1.0) | Apex Systems | Data Analysts (NEW) | [Apply](https://www.adzuna.com/land/ad/5758518643?se=yDSnZwxo8RG0btGxqHH3qw&utm_medium=api&utm_source=43aa6d53&v=A4627246CEBC67387F6858CACEF6E85AD2C4D633) |
+| 33 | 3.0 | Junior/entry title (+1.0) | BC Forward | Data Analyst V - CX or VoC (NEW) | [Apply](https://www.adzuna.com/details/5763388432?utm_medium=api&utm_source=43aa6d53) |
+| 34 | 3.0 | Junior/entry title (+1.0) | Idealforce LLC | Business Intelligence/Data Analyst (NEW) | [Apply](https://www.adzuna.com/land/ad/5753860237?se=oBGhaAxo8RG0btGxqHH3qw&utm_medium=api&utm_source=43aa6d53&v=B058578D367E71B2B9139AACA0EB3983CEC50BFA) |
+| 35 | 3.0 | Junior/entry title (+1.0) | Saic | Facilities Data Analyst (NEW) | [Apply](https://www.adzuna.com/land/ad/5761086112?se=oBGhaAxo8RG0btGxqHH3qw&utm_medium=api&utm_source=43aa6d53&v=FB0F6291E2331F4DF9714525A7BE8E88F98865DD) |
+| 36 | 3.0 | Junior/entry title (+1.0) | Software Technology Inc | Project Portfolio/Data Analyst (NEW) | [Apply](https://www.adzuna.com/land/ad/5757207159?se=wloNaQxo8RG0btGxqHH3qw&utm_medium=api&utm_source=43aa6d53&v=6F4071F5832422B7AC34AE4365CD8ECA26936459) |
+| 37 | 3.0 | Junior/entry title (+1.0) | Cloud Space LLC | Operation Data Analyst - local (NEW) | [Apply](https://www.adzuna.com/land/ad/5756720456?se=wloNaQxo8RG0btGxqHH3qw&utm_medium=api&utm_source=43aa6d53&v=2A5F5A095459ED6CC5B80C2264AB0628009E5F6E) |
+| 38 | 3.0 | Junior/entry title (+1.0) | Norstella | RWD Data Analyst (NEW) | [Apply](https://www.adzuna.com/land/ad/5749974770?se=KPeHaQxo8RGfB72z_DrYeQ&utm_medium=api&utm_source=43aa6d53&v=F46967336FD2BC9FF734F772C0144C5127A86FEE) |
+| 39 | 3.0 | Junior/entry title (+1.0) | Valzo Soft Solutions | Regulatory Reporting Analyst (NEW) | [Apply](https://www.adzuna.com/details/5763380173?utm_medium=api&utm_source=43aa6d53) |
+| 40 | 3.0 | Junior/entry title (+1.0) | TTEC | Seasonal Healthcare Associate Reporting Analyst (NEW) | [Apply](https://www.adzuna.com/details/5763391685?utm_medium=api&utm_source=43aa6d53) |
+| 41 | 3.0 | Junior/entry title (+1.0) | Stellent IT LLC | Data & Reporting Analyst/Architect (NEW) | [Apply](https://www.adzuna.com/details/5757826052?utm_medium=api&utm_source=43aa6d53) |
+| 42 | 3.0 | SQL/TABLEAU/LOOKER/SNOWFLAKE/EXCEL skills (+0.5); Healthcare/domain match (+0.5) | Spring Health | Analytics Engineer II, Identity | [Apply](https://job-boards.greenhouse.io/springhealth66/jobs/4694731005) |
+| 43 | 3.0 | SQL/PYTHON skills (+0.2); Healthcare/domain match (+0.5); Small employer ~300 (+0.3) | Oddball | Business Analyst | [Apply](https://job-boards.greenhouse.io/oddball/jobs/7750012003) |
+| 44 | 3.0 | TABLEAU/LOOKER skills (+0.2); Healthcare/domain match (+0.5); Small employer ~400 (+0.3) | Betterment | CX Automation Performance Analyst | [Apply](https://www.betterment.com/careers/current-openings/job?gh_jid=7843107&gh_jid=7843107) |
+| 45 | 2.9 | PYTHON skills (+0.1); Healthcare/domain match (+0.5); Take-home/assessment signal (+0.3) | Huntress | Security Operations Analyst - West Coast (NEW) | [Apply](https://job-boards.greenhouse.io/huntress/jobs/7743188003) |
+| 46 | 2.9 | EXCEL skills (+0.1); Healthcare/domain match (+0.5); Small employer ~500 (+0.3) | LaunchDarkly | Security Analyst - Governance, Risk, and Compliance | [Apply](https://job-boards.greenhouse.io/launchdarkly/jobs/7753776003) |
+| 47 | 2.7 | SQL/PYTHON skills (+0.2); Healthcare/domain match (+0.5) | Twilio | Marketing Analyst, PLG & Self-Serve Analytics (NEW) | [Apply](https://job-boards.greenhouse.io/twilio/jobs/7923207) |
+| 48 | 2.6 | EXCEL skills (+0.1); Healthcare/domain match (+0.5) | Five9 | Deal Desk Analyst (NEW) | [Apply](https://www.five9.com/about/careers/job-detail?gh_jid=5979165004) |
+| 49 | 2.6 | EXCEL skills (+0.1); Healthcare/domain match (+0.5) | Imperfect Foods | Buyer Analyst (NEW) | [Apply](https://job-boards.greenhouse.io/misfitsmarket/jobs/7740388003) |
+| 50 | 2.6 | EXCEL skills (+0.1); Healthcare/domain match (+0.5) | Imperfect Foods | Logistics Analyst (NEW) | [Apply](https://job-boards.greenhouse.io/misfitsmarket/jobs/7770268003) |
+| 51 | 2.6 | EXCEL skills (+0.1); Healthcare/domain match (+0.5) | Natera | Business Systems Analyst (NEW) | [Apply](https://job-boards.greenhouse.io/natera/jobs/6000552004) |
+| 52 | 2.6 | SQL skills (+0.1); Healthcare/domain match (+0.5) | PointClickCare | Canada- Technical Solutions Analyst (NEW) | [Apply](https://jobs.lever.co/pointclickcare/52de573a-db3a-401d-83b6-ab29525c399b) |
+| 53 | 2.6 | SQL skills (+0.1); Healthcare/domain match (+0.5) | PointClickCare | US- Technical Solutions Analyst (NEW) | [Apply](https://jobs.lever.co/pointclickcare/64597a6f-76b4-404d-9632-1e031e56c585) |
+| 54 | 2.5 | Healthcare/domain match (+0.5) | Agero | Quality Assurance Analyst (NEW) | [Apply](https://www.agero.com/available-jobs?gh_jid=8569348002) |
+| 55 | 2.5 | Healthcare/domain match (+0.5) | Aptos | Security Analyst (NEW) | [Apply](https://job-boards.greenhouse.io/aptoslabs/jobs/4702283005) |
+| 56 | 2.5 | Healthcare/domain match (+0.5) | PointClickCare | Solutions Analyst (EHR Support) (NEW) | [Apply](https://jobs.lever.co/pointclickcare/2a8ebc8e-2f0c-4d9d-a69d-216adeb0fa95) |
+| 57 | 2.5 | Healthcare/domain match (+0.5) | Siritech Solutions Corp | Business Intelligence Analyst / Developer (NEW) | [Apply](https://www.adzuna.com/details/5752466847?utm_medium=api&utm_source=43aa6d53) |
+| 58 | 2.5 | Healthcare/domain match (+0.5) | Wilmington Health Pllc | Business Intelligence Analyst - Remote - Full Time (NEW) | [Apply](https://www.adzuna.com/details/5753138009?utm_medium=api&utm_source=43aa6d53) |
+| 59 | 2.5 | Healthcare/domain match (+0.5) | ICU Medical | Analyst, Operations Business Intelligence (remote) (NEW) | [Apply](https://www.adzuna.com/details/5759815578?utm_medium=api&utm_source=43aa6d53) |
+
+
+---
+
 ## Scan 2026-06-14 (AI review: enabled)
 
 ### Verified Roles (score >= 3.5)
