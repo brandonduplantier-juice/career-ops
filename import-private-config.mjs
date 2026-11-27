@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Restore local-only configuration from an authenticated, separately cloned private repository.
 import { existsSync, lstatSync, realpathSync, mkdirSync, readFileSync, copyFileSync, constants } from 'node:fs';
-import { resolve, dirname, join, relative, isAbsolute } from 'node:path';
+import { resolve, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root=realpathSync(dirname(fileURLToPath(import.meta.url)));
 const files=["config/profile.yml","modes/_profile.md","portals.yml","data/applications.md","data/daily_queue.md"];
@@ -13,7 +13,9 @@ function checked(base,path){
   let current=base;
   for(const part of path.split('/')){
     current=join(current,part);
-    if(existsSync(current) && lstatSync(current).isSymbolicLink()) throw Error('Symlink not allowed: '+path);
+    let entry;
+    try { entry=lstatSync(current); } catch (error) { if(error.code!=='ENOENT') throw error; }
+    if(entry?.isSymbolicLink()) throw Error('Symlink not allowed: '+path);
   }
   return current;
 }
