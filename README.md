@@ -324,3 +324,12 @@ MIT
 [![X](https://img.shields.io/badge/X-000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/santifer)
 [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/8pRpHETxa4)
 [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:hi@santifer.io)
+
+## Project navigation
+
+- [Engineering guide](ENGINEERING.md): directory map, development workflow and review standards.
+- [Documentation index](DOCUMENTATION.md): technical documents and existing project resources.
+
+## Local private configuration
+
+Keep personal settings and records in a separate private checkout. After authenticating to your private repository, run `node import-private-config.mjs <private-config-directory>` from this checkout. It copies only the five expected local files, refuses conflicting existing content, and does not require credentials in the public project. Do not commit the restored files. Existing local installations should back up their working files before pulling the migration; a Git update may remove formerly tracked files. Historical public commits are not sanitized by this change.

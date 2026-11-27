@@ -175,13 +175,14 @@ for (const f of systemFiles) {
 // Check user files are NOT tracked (gitignored)
 const userFiles = [
   'config/profile.yml', 'modes/_profile.md', 'portals.yml',
+  'data/applications.md', 'data/daily_queue.md',
 ];
 for (const f of userFiles) {
   const tracked = run('git', ['ls-files', f]);
   if (tracked === '') {
     pass(`User file gitignored: ${f}`);
   } else if (tracked === null) {
-    pass(`User file gitignored: ${f}`);
+    fail(`Unable to verify tracking: ${f}`);
   } else {
     fail(`User file IS tracked (should be gitignored): ${f}`);
   }
