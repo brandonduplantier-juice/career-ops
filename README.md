@@ -329,3 +329,7 @@ MIT
 
 - [Engineering guide](ENGINEERING.md): directory map, development workflow and review standards.
 - [Documentation index](DOCUMENTATION.md): technical documents and existing project resources.
+
+## Local private configuration
+
+Keep personal settings and records in a separate private checkout. After authenticating to your private repository, run `node import-private-config.mjs <private-config-directory>` from this checkout. It copies only the five expected local files, refuses conflicting existing content, and does not require credentials in the public project. Do not commit the restored files. Existing local installations should back up their working files before pulling the migration; a Git update may remove formerly tracked files. Historical public commits are not sanitized by this change.

@@ -57,3 +57,7 @@ data/applied_jobs.json
 *.tex
 data/chrome_profile/
 *.bak
+
+# Private configuration checkout and local queue
+/data/daily_queue.md
+/career-ops-config/
