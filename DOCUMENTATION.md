@@ -30,3 +30,7 @@ The following map points to existing documents and directories; their contents a
 ## Release history
 
 - [CHANGELOG.md](CHANGELOG.md)
+
+## Release management
+
+- [Release and versioning policy](RELEASE_POLICY.md): verification, version naming, release evidence and rollback requirements.
